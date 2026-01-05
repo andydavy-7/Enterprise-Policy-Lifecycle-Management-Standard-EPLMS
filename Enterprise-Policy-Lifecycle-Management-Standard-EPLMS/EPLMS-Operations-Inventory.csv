@@ -1,0 +1,394 @@
+Module Number,Module Name,Feature Number,Feature Name,Operation Code,Operation Description
+1,Policy Authoring & Collaboration,F1.1,Policy Editor,CREATE_POLICY,Create new policy from scratch or template
+1,Policy Authoring & Collaboration,F1.1,Policy Editor,EDIT_POLICY,Edit existing policy content
+1,Policy Authoring & Collaboration,F1.1,Policy Editor,FORMAT_TEXT,"Apply formatting (bold, italic, headings, lists)"
+1,Policy Authoring & Collaboration,F1.1,Policy Editor,INSERT_TABLE,Add table to policy
+1,Policy Authoring & Collaboration,F1.1,Policy Editor,INSERT_LINK,Add hyperlink to related policy or external resource
+1,Policy Authoring & Collaboration,F1.1,Policy Editor,ADD_SECTION,Add new section to policy
+1,Policy Authoring & Collaboration,F1.1,Policy Editor,REORDER_SECTIONS,Change section order
+1,Policy Authoring & Collaboration,F1.1,Policy Editor,DELETE_SECTION,Remove section
+1,Policy Authoring & Collaboration,F1.1,Policy Editor,PREVIEW_POLICY,See how policy will look to employees
+1,Policy Authoring & Collaboration,F1.1,Policy Editor,EXPORT_PDF,Export policy as PDF
+1,Policy Authoring & Collaboration,F1.2,Version Control System,AUTO_SAVE,Automatically save changes
+1,Policy Authoring & Collaboration,F1.2,Version Control System,MANUAL_SAVE,Manually save with version note
+1,Policy Authoring & Collaboration,F1.2,Version Control System,VIEW_VERSIONS,See all versions of policy
+1,Policy Authoring & Collaboration,F1.2,Version Control System,COMPARE_VERSIONS,View differences between two versions
+1,Policy Authoring & Collaboration,F1.2,Version Control System,ROLLBACK_VERSION,Restore previous version
+1,Policy Authoring & Collaboration,F1.2,Version Control System,VIEW_AUDIT_TRAIL,See who changed what when
+1,Policy Authoring & Collaboration,F1.2,Version Control System,EXPORT_AUDIT,Export audit trail for compliance
+1,Policy Authoring & Collaboration,F1.2,Version Control System,CREATE_BRANCH,Create draft branch for major revision
+1,Policy Authoring & Collaboration,F1.3,Real-Time Collaboration,SHOW_PRESENCE,Show who's currently editing
+1,Policy Authoring & Collaboration,F1.3,Real-Time Collaboration,REALTIME_EDIT,Edit simultaneously with others
+1,Policy Authoring & Collaboration,F1.3,Real-Time Collaboration,ADD_COMMENT,Add inline comment
+1,Policy Authoring & Collaboration,F1.3,Real-Time Collaboration,REPLY_COMMENT,Reply to comment thread
+1,Policy Authoring & Collaboration,F1.3,Real-Time Collaboration,RESOLVE_COMMENT,Mark comment as resolved
+1,Policy Authoring & Collaboration,F1.3,Real-Time Collaboration,ASSIGN_SECTION,Assign section to owner
+1,Policy Authoring & Collaboration,F1.3,Real-Time Collaboration,LOCK_SECTION,Prevent edits to section
+1,Policy Authoring & Collaboration,F1.3,Real-Time Collaboration,SUGGEST_CHANGE,Non-owners suggest changes
+1,Policy Authoring & Collaboration,F1.3,Real-Time Collaboration,ACCEPT_SUGGESTION,Owner accepts suggested change
+1,Policy Authoring & Collaboration,F1.3,Real-Time Collaboration,REJECT_SUGGESTION,Owner rejects suggested change
+1,Policy Authoring & Collaboration,F1.4,AI-Powered Authoring Assistant,GENERATE_DRAFT,AI generates policy draft from prompt
+1,Policy Authoring & Collaboration,F1.4,AI-Powered Authoring Assistant,CHECK_COMPLIANCE,Check policy against standards
+1,Policy Authoring & Collaboration,F1.4,AI-Powered Authoring Assistant,IMPROVE_CLARITY,Get readability suggestions
+1,Policy Authoring & Collaboration,F1.4,AI-Powered Authoring Assistant,CHECK_CONSISTENCY,Find inconsistent terminology
+1,Policy Authoring & Collaboration,F1.4,AI-Powered Authoring Assistant,SUGGEST_STRUCTURE,Get structural improvements
+1,Policy Authoring & Collaboration,F1.4,AI-Powered Authoring Assistant,ANALYZE_GAPS,Identify missing policies
+1,Policy Authoring & Collaboration,F1.4,AI-Powered Authoring Assistant,EXPLAIN_SECTION,Get AI explanation of complex section
+1,Policy Authoring & Collaboration,F1.4,AI-Powered Authoring Assistant,TRANSLATE_POLICY,Translate to another language
+1,Policy Authoring & Collaboration,F1.5,Template Library & Content Snippets,BROWSE_TEMPLATES,Browse available templates
+1,Policy Authoring & Collaboration,F1.5,Template Library & Content Snippets,PREVIEW_TEMPLATE,Preview template before using
+1,Policy Authoring & Collaboration,F1.5,Template Library & Content Snippets,CREATE_FROM_TEMPLATE,Start policy from template
+1,Policy Authoring & Collaboration,F1.5,Template Library & Content Snippets,SAVE_AS_TEMPLATE,Save current policy as template
+1,Policy Authoring & Collaboration,F1.5,Template Library & Content Snippets,INSERT_SNIPPET,Insert reusable content block
+1,Policy Authoring & Collaboration,F1.5,Template Library & Content Snippets,CREATE_SNIPPET,Create reusable content block
+1,Policy Authoring & Collaboration,F1.5,Template Library & Content Snippets,MANAGE_SNIPPETS,Organize snippet library
+1,Policy Authoring & Collaboration,F1.5,Template Library & Content Snippets,CREATE_POLICY_FAMILY,Create related policy bundle
+2,Approval Workflow Management,F2.1,Workflow Designer,CREATE_WORKFLOW,Create new approval workflow
+2,Approval Workflow Management,F2.1,Workflow Designer,ADD_STEP,Add approval step to workflow
+2,Approval Workflow Management,F2.1,Workflow Designer,CONFIGURE_APPROVER,Set who approves at this step
+2,Approval Workflow Management,F2.1,Workflow Designer,SET_ROUTING,Define sequential vs parallel
+2,Approval Workflow Management,F2.1,Workflow Designer,ADD_CONDITION,Add conditional logic (if/then)
+2,Approval Workflow Management,F2.1,Workflow Designer,SET_SLA,Define approval time limit
+2,Approval Workflow Management,F2.1,Workflow Designer,ADD_NOTIFICATION,Configure notification settings
+2,Approval Workflow Management,F2.1,Workflow Designer,PREVIEW_WORKFLOW,Visualize workflow execution
+2,Approval Workflow Management,F2.1,Workflow Designer,ACTIVATE_WORKFLOW,Make workflow active
+2,Approval Workflow Management,F2.1,Workflow Designer,ASSIGN_WORKFLOW,Assign workflow to policy type
+2,Approval Workflow Management,F2.2,Workflow Execution & Tracking,SUBMIT_FOR_APPROVAL,Start approval workflow
+2,Approval Workflow Management,F2.2,Workflow Execution & Tracking,VIEW_STATUS,Check where policy is in workflow
+2,Approval Workflow Management,F2.2,Workflow Execution & Tracking,APPROVE,Approve policy at current step
+2,Approval Workflow Management,F2.2,Workflow Execution & Tracking,REJECT,Reject policy
+2,Approval Workflow Management,F2.2,Workflow Execution & Tracking,REQUEST_CHANGES,Request specific changes
+2,Approval Workflow Management,F2.2,Workflow Execution & Tracking,RECALL_SUBMISSION,Author recalls policy from workflow
+2,Approval Workflow Management,F2.2,Workflow Execution & Tracking,VIEW_HISTORY,See workflow history
+2,Approval Workflow Management,F2.2,Workflow Execution & Tracking,ESCALATE_MANUALLY,Manually escalate to manager
+2,Approval Workflow Management,F2.2,Workflow Execution & Tracking,REASSIGN_APPROVER,Change approver for current step
+2,Approval Workflow Management,F2.2,Workflow Execution & Tracking,SKIP_STEP,Admin skips workflow step
+2,Approval Workflow Management,F2.3,Digital Signatures & Approval Certificates,SIGN_APPROVAL,Apply digital signature to approval
+2,Approval Workflow Management,F2.3,Digital Signatures & Approval Certificates,VERIFY_SIGNATURE,Verify signature authenticity
+2,Approval Workflow Management,F2.3,Digital Signatures & Approval Certificates,GENERATE_CERTIFICATE,Create approval certificate
+2,Approval Workflow Management,F2.3,Digital Signatures & Approval Certificates,VIEW_CERTIFICATE,View approval certificate
+2,Approval Workflow Management,F2.3,Digital Signatures & Approval Certificates,EXPORT_EVIDENCE,Export approval evidence for audit
+2,Approval Workflow Management,F2.3,Digital Signatures & Approval Certificates,ADD_APPROVAL_NOTE,Add note to approval
+2,Approval Workflow Management,F2.3,Digital Signatures & Approval Certificates,CONDITIONAL_APPROVAL,Approve with conditions
+2,Approval Workflow Management,F2.4,Workflow Analytics & Bottleneck Detection,VIEW_WORKFLOW_HEALTH,See overview of workflow performance
+2,Approval Workflow Management,F2.4,Workflow Analytics & Bottleneck Detection,IDENTIFY_BOTTLENECKS,Find workflow bottlenecks
+2,Approval Workflow Management,F2.4,Workflow Analytics & Bottleneck Detection,TRACK_SLA_COMPLIANCE,Monitor SLA adherence
+2,Approval Workflow Management,F2.4,Workflow Analytics & Bottleneck Detection,APPROVER_PERFORMANCE,See individual approver metrics
+2,Approval Workflow Management,F2.4,Workflow Analytics & Bottleneck Detection,POLICY_JOURNEY,Track single policy through workflow
+2,Approval Workflow Management,F2.4,Workflow Analytics & Bottleneck Detection,EXPORT_METRICS,Export workflow metrics
+2,Approval Workflow Management,F2.4,Workflow Analytics & Bottleneck Detection,SET_ALERTS,Configure bottleneck alerts
+3,Policy Distribution & Publishing,F3.1,Multi-Channel Distribution,PUBLISH_POLICY,Publish approved policy
+3,Policy Distribution & Publishing,F3.1,Multi-Channel Distribution,SELECT_CHANNELS,Choose distribution channels
+3,Policy Distribution & Publishing,F3.1,Multi-Channel Distribution,DEFINE_AUDIENCE,Specify target audience
+3,Policy Distribution & Publishing,F3.1,Multi-Channel Distribution,SCHEDULE_DISTRIBUTION,Schedule future distribution
+3,Policy Distribution & Publishing,F3.1,Multi-Channel Distribution,PREVIEW_NOTIFICATION,Preview how notification looks
+3,Policy Distribution & Publishing,F3.1,Multi-Channel Distribution,TEST_SEND,Send test notification
+3,Policy Distribution & Publishing,F3.1,Multi-Channel Distribution,TRACK_DELIVERY,Monitor distribution status
+3,Policy Distribution & Publishing,F3.1,Multi-Channel Distribution,RESEND_NOTIFICATION,Resend to non-recipients
+3,Policy Distribution & Publishing,F3.2,Policy Repository & Portal,BROWSE_POLICIES,Browse all published policies
+3,Policy Distribution & Publishing,F3.2,Policy Repository & Portal,SEARCH_POLICIES,Search for specific policy
+3,Policy Distribution & Publishing,F3.2,Policy Repository & Portal,FILTER_BY_CATEGORY,Filter policies by category
+3,Policy Distribution & Publishing,F3.2,Policy Repository & Portal,FILTER_BY_DEPARTMENT,Show policies applicable to user's dept
+3,Policy Distribution & Publishing,F3.2,Policy Repository & Portal,VIEW_POLICY,Read policy content
+3,Policy Distribution & Publishing,F3.2,Policy Repository & Portal,DOWNLOAD_POLICY,Download policy as PDF
+3,Policy Distribution & Publishing,F3.2,Policy Repository & Portal,BOOKMARK_POLICY,Save policy to favorites
+3,Policy Distribution & Publishing,F3.2,Policy Repository & Portal,VIEW_RELATED_POLICIES,See related/linked policies
+3,Policy Distribution & Publishing,F3.2,Policy Repository & Portal,VIEW_VERSION_HISTORY,See previous versions
+3,Policy Distribution & Publishing,F3.2,Policy Repository & Portal,SUBSCRIBE_TO_UPDATES,Get notified of policy changes
+3,Policy Distribution & Publishing,F3.2,Policy Repository & Portal,SHARE_POLICY,Share policy link with colleague
+3,Policy Distribution & Publishing,F3.2,Policy Repository & Portal,PRINT_POLICY,Print-friendly version
+3,Policy Distribution & Publishing,F3.3,Publishing Controls & Versioning,INITIATE_PUBLISH,Start publishing workflow
+3,Policy Distribution & Publishing,F3.3,Publishing Controls & Versioning,CONFIGURE_EFFECTIVE_DATE,Set when policy becomes active
+3,Policy Distribution & Publishing,F3.3,Publishing Controls & Versioning,SET_EXPIRATION_DATE,Set policy expiration/sunset date
+3,Policy Distribution & Publishing,F3.3,Publishing Controls & Versioning,CONFIGURE_STAGED_ROLLOUT,Publish to subset first
+3,Policy Distribution & Publishing,F3.3,Publishing Controls & Versioning,ENABLE_AB_TEST,Test two policy variations
+3,Policy Distribution & Publishing,F3.3,Publishing Controls & Versioning,PUBLISH_DRAFT,Publish as draft (preview mode)
+3,Policy Distribution & Publishing,F3.3,Publishing Controls & Versioning,ACTIVATE_POLICY,Make policy enforceable
+3,Policy Distribution & Publishing,F3.3,Publishing Controls & Versioning,SUPERSEDE_POLICY,Replace old version with new
+3,Policy Distribution & Publishing,F3.3,Publishing Controls & Versioning,ROLLBACK_PUBLISH,"Undo publication, revert to previous"
+3,Policy Distribution & Publishing,F3.3,Publishing Controls & Versioning,UNPUBLISH_POLICY,Remove from active status
+3,Policy Distribution & Publishing,F3.3,Publishing Controls & Versioning,SCHEDULE_REVIEW,Schedule future review date
+3,Policy Distribution & Publishing,F3.4,Archive & Retention Management,ARCHIVE_POLICY,Move policy to archived status
+3,Policy Distribution & Publishing,F3.4,Archive & Retention Management,SET_RETENTION_PERIOD,Configure retention period
+3,Policy Distribution & Publishing,F3.4,Archive & Retention Management,PLACE_LEGAL_HOLD,Prevent deletion for legal/audit purposes
+3,Policy Distribution & Publishing,F3.4,Archive & Retention Management,RELEASE_LEGAL_HOLD,Remove legal hold
+3,Policy Distribution & Publishing,F3.4,Archive & Retention Management,SCHEDULE_AUTO_ARCHIVE,Auto-archive on expiration date
+3,Policy Distribution & Publishing,F3.4,Archive & Retention Management,SEARCH_ARCHIVED_POLICIES,Find archived policies
+3,Policy Distribution & Publishing,F3.4,Archive & Retention Management,VIEW_ARCHIVED_POLICY,Read archived policy content
+3,Policy Distribution & Publishing,F3.4,Archive & Retention Management,RESTORE_ARCHIVED_POLICY,Restore archived policy to active
+3,Policy Distribution & Publishing,F3.4,Archive & Retention Management,EXPORT_ARCHIVE,Export archived policies in bulk
+3,Policy Distribution & Publishing,F3.4,Archive & Retention Management,CONFIGURE_RETENTION_RULES,Set org-wide retention policies
+3,Policy Distribution & Publishing,F3.4,Archive & Retention Management,VIEW_RETENTION_SCHEDULE,See upcoming deletions
+3,Policy Distribution & Publishing,F3.4,Archive & Retention Management,PERMANENTLY_DELETE,Delete policy beyond recovery
+3,Policy Distribution & Publishing,F3.5,Distribution Analytics & Tracking,VIEW_DISTRIBUTION_STATUS,See real-time distribution progress
+3,Policy Distribution & Publishing,F3.5,Distribution Analytics & Tracking,TRACK_DELIVERY_RATE,Monitor notification delivery success
+3,Policy Distribution & Publishing,F3.5,Distribution Analytics & Tracking,IDENTIFY_FAILED_DELIVERIES,See who didn't receive notification
+3,Policy Distribution & Publishing,F3.5,Distribution Analytics & Tracking,VIEW_CHANNEL_PERFORMANCE,Compare channel effectiveness
+3,Policy Distribution & Publishing,F3.5,Distribution Analytics & Tracking,TRACK_OPEN_RATE,See who opened notification
+3,Policy Distribution & Publishing,F3.5,Distribution Analytics & Tracking,TRACK_CLICK_RATE,See who clicked through to policy
+3,Policy Distribution & Publishing,F3.5,Distribution Analytics & Tracking,MEASURE_TIME_TO_ACKNOWLEDGE,Track acknowledgment velocity
+3,Policy Distribution & Publishing,F3.5,Distribution Analytics & Tracking,IDENTIFY_NON_RESPONDERS,Find users who haven't engaged
+3,Policy Distribution & Publishing,F3.5,Distribution Analytics & Tracking,EXPORT_DISTRIBUTION_REPORT,Generate distribution audit report
+3,Policy Distribution & Publishing,F3.5,Distribution Analytics & Tracking,RETRY_FAILED_DELIVERY,Resend failed notifications
+3,Policy Distribution & Publishing,F3.5,Distribution Analytics & Tracking,VIEW_GEOGRAPHIC_REACH,See distribution by location/timezone
+4,Policy Adoption & Engagement,F4.1,Policy Acknowledgment Interface (Employee View),VIEW_PENDING_POLICIES,See policies requiring acknowledgment
+4,Policy Adoption & Engagement,F4.1,Policy Acknowledgment Interface (Employee View),READ_POLICY,Read policy content
+4,Policy Adoption & Engagement,F4.1,Policy Acknowledgment Interface (Employee View),CHOOSE_FORMAT,Select delivery format
+4,Policy Adoption & Engagement,F4.1,Policy Acknowledgment Interface (Employee View),TAKE_QUIZ,Complete comprehension quiz
+4,Policy Adoption & Engagement,F4.1,Policy Acknowledgment Interface (Employee View),ACKNOWLEDGE_POLICY,Submit acknowledgment
+4,Policy Adoption & Engagement,F4.1,Policy Acknowledgment Interface (Employee View),ASK_QUESTION,Ask clarifying question
+4,Policy Adoption & Engagement,F4.1,Policy Acknowledgment Interface (Employee View),BOOKMARK_POLICY,Save policy for quick access
+4,Policy Adoption & Engagement,F4.1,Policy Acknowledgment Interface (Employee View),SHARE_FEEDBACK,Provide feedback on policy clarity
+4,Policy Adoption & Engagement,F4.2,Gamification & Engagement Mechanics,EARN_POINTS,Earn points for acknowledgments
+4,Policy Adoption & Engagement,F4.2,Gamification & Engagement Mechanics,EARN_BADGE,Unlock achievement badges
+4,Policy Adoption & Engagement,F4.2,Gamification & Engagement Mechanics,VIEW_LEADERBOARD,See team rankings
+4,Policy Adoption & Engagement,F4.2,Gamification & Engagement Mechanics,TRACK_STREAK,Maintain acknowledgment streak
+4,Policy Adoption & Engagement,F4.2,Gamification & Engagement Mechanics,COMPARE_PEERS,Compare progress to team
+4,Policy Adoption & Engagement,F4.2,Gamification & Engagement Mechanics,SHARE_ACHIEVEMENT,Share achievement on Slack/Teams
+4,Policy Adoption & Engagement,F4.3,Manager Escalation & Tracking,VIEW_TEAM_STATUS,See team acknowledgment status
+4,Policy Adoption & Engagement,F4.3,Manager Escalation & Tracking,SEND_REMINDER,Send reminder to non-acknowledgers
+4,Policy Adoption & Engagement,F4.3,Manager Escalation & Tracking,EXPORT_REPORT,Export team compliance report
+4,Policy Adoption & Engagement,F4.3,Manager Escalation & Tracking,SET_DEADLINE,Set team deadline for acknowledgment
+4,Policy Adoption & Engagement,F4.3,Manager Escalation & Tracking,ESCALATE_TO_HR,Flag non-compliance to HR
+4,Policy Adoption & Engagement,F4.4,Onboarding & New Hire Policy Packages,CREATE_ONBOARDING_PACKAGE,Define policy package for new hires
+4,Policy Adoption & Engagement,F4.4,Onboarding & New Hire Policy Packages,ASSIGN_BY_ROLE,Auto-assign policies based on job role
+4,Policy Adoption & Engagement,F4.4,Onboarding & New Hire Policy Packages,ASSIGN_BY_DEPARTMENT,Auto-assign policies by department
+4,Policy Adoption & Engagement,F4.4,Onboarding & New Hire Policy Packages,SET_COMPLETION_SEQUENCE,Define order of policy acknowledgment
+4,Policy Adoption & Engagement,F4.4,Onboarding & New Hire Policy Packages,SET_ONBOARDING_DEADLINE,Set completion timeline for new hires
+4,Policy Adoption & Engagement,F4.4,Onboarding & New Hire Policy Packages,TRACK_ONBOARDING_PROGRESS,Monitor new hire policy completion
+4,Policy Adoption & Engagement,F4.4,Onboarding & New Hire Policy Packages,TRIGGER_ON_HIRE_DATE,Auto-start onboarding on hire date
+4,Policy Adoption & Engagement,F4.4,Onboarding & New Hire Policy Packages,SEND_WELCOME_PACKAGE,Send welcome email with policy overview
+4,Policy Adoption & Engagement,F4.4,Onboarding & New Hire Policy Packages,BLOCK_SYSTEM_ACCESS,Prevent system access until policies acknowledged
+4,Policy Adoption & Engagement,F4.4,Onboarding & New Hire Policy Packages,MANAGER_NOTIFICATION,Notify manager of completion status
+4,Policy Adoption & Engagement,F4.4,Onboarding & New Hire Policy Packages,GENERATE_COMPLETION_REPORT,Report on onboarding compliance
+4,Policy Adoption & Engagement,F4.5,Multi-Modal Content & Micro-Learning,UPLOAD_VIDEO_CONTENT,Add video explanation of policy
+4,Policy Adoption & Engagement,F4.5,Multi-Modal Content & Micro-Learning,CREATE_INFOGRAPHIC,Create visual policy summary
+4,Policy Adoption & Engagement,F4.5,Multi-Modal Content & Micro-Learning,BUILD_INTERACTIVE_MODULE,Create interactive learning module
+4,Policy Adoption & Engagement,F4.5,Multi-Modal Content & Micro-Learning,CREATE_MICROLEARNING,Break policy into bite-sized lessons
+4,Policy Adoption & Engagement,F4.5,Multi-Modal Content & Micro-Learning,SET_CONTENT_PREFERENCE,User chooses preferred format
+4,Policy Adoption & Engagement,F4.5,Multi-Modal Content & Micro-Learning,TRACK_VIDEO_WATCH,Monitor video completion
+4,Policy Adoption & Engagement,F4.5,Multi-Modal Content & Micro-Learning,ADD_VIDEO_CHECKPOINTS,Add comprehension checks in video
+4,Policy Adoption & Engagement,F4.5,Multi-Modal Content & Micro-Learning,GENERATE_AUDIO_VERSION,Text-to-speech policy audio
+4,Policy Adoption & Engagement,F4.5,Multi-Modal Content & Micro-Learning,CREATE_FLASHCARDS,Generate key points flashcards
+4,Policy Adoption & Engagement,F4.5,Multi-Modal Content & Micro-Learning,ENABLE_CLOSED_CAPTIONS,Add captions to videos
+4,Policy Adoption & Engagement,F4.5,Multi-Modal Content & Micro-Learning,TRACK_LEARNING_PATH,Monitor progress through modules
+4,Policy Adoption & Engagement,F4.5,Multi-Modal Content & Micro-Learning,ADAPTIVE_CONTENT,Adjust difficulty based on performance
+4,Policy Adoption & Engagement,F4.6,Scenario-Based Training & Simulations,CREATE_SCENARIO,Build scenario simulation
+4,Policy Adoption & Engagement,F4.6,Scenario-Based Training & Simulations,ADD_DECISION_POINT,Add choice moment in scenario
+4,Policy Adoption & Engagement,F4.6,Scenario-Based Training & Simulations,LINK_TO_POLICY_SECTION,Reference relevant policy sections
+4,Policy Adoption & Engagement,F4.6,Scenario-Based Training & Simulations,SET_CORRECT_PATH,Define optimal decision path
+4,Policy Adoption & Engagement,F4.6,Scenario-Based Training & Simulations,START_SIMULATION,Begin scenario training
+4,Policy Adoption & Engagement,F4.6,Scenario-Based Training & Simulations,MAKE_DECISION,User chooses action in scenario
+4,Policy Adoption & Engagement,F4.6,Scenario-Based Training & Simulations,VIEW_POLICY_HINT,Get policy guidance during scenario
+4,Policy Adoption & Engagement,F4.6,Scenario-Based Training & Simulations,COMPLETE_SCENARIO,Finish scenario simulation
+4,Policy Adoption & Engagement,F4.6,Scenario-Based Training & Simulations,REVIEW_DECISIONS,See all choices made
+4,Policy Adoption & Engagement,F4.6,Scenario-Based Training & Simulations,RETRY_SCENARIO,Attempt scenario again
+4,Policy Adoption & Engagement,F4.6,Scenario-Based Training & Simulations,TRACK_SCENARIO_PERFORMANCE,Monitor scenario completion
+4,Policy Adoption & Engagement,F4.6,Scenario-Based Training & Simulations,UNLOCK_ADVANCED_SCENARIOS,Progress to harder scenarios
+4,Policy Adoption & Engagement,F4.7,Periodic Re-Certification & Continuous Compliance,CONFIGURE_RECERT_SCHEDULE,Set re-certification frequency
+4,Policy Adoption & Engagement,F4.7,Periodic Re-Certification & Continuous Compliance,TRIGGER_RECERTIFICATION,Initiate re-cert cycle
+4,Policy Adoption & Engagement,F4.7,Periodic Re-Certification & Continuous Compliance,IDENTIFY_CHANGED_POLICIES,Show what's new since last cert
+4,Policy Adoption & Engagement,F4.7,Periodic Re-Certification & Continuous Compliance,ABBREVIATED_RECERT,Quick re-cert for unchanged policies
+4,Policy Adoption & Engagement,F4.7,Periodic Re-Certification & Continuous Compliance,FULL_RECERT_REQUIRED,Require full review for major changes
+4,Policy Adoption & Engagement,F4.7,Periodic Re-Certification & Continuous Compliance,SPOT_CHECK_KNOWLEDGE,Random knowledge checks
+4,Policy Adoption & Engagement,F4.7,Periodic Re-Certification & Continuous Compliance,RISK_BASED_RECERT,Prioritize re-cert for high-risk users
+4,Policy Adoption & Engagement,F4.7,Periodic Re-Certification & Continuous Compliance,SEASONAL_REFRESHERS,Time-based refreshers
+4,Policy Adoption & Engagement,F4.7,Periodic Re-Certification & Continuous Compliance,TRACK_RECERT_COMPLIANCE,Monitor re-cert completion
+4,Policy Adoption & Engagement,F4.7,Periodic Re-Certification & Continuous Compliance,GRACE_PERIOD_WARNING,Warn before access revocation
+4,Policy Adoption & Engagement,F4.7,Periodic Re-Certification & Continuous Compliance,REVOKE_ACCESS,Block access for expired certs
+4,Policy Adoption & Engagement,F4.7,Periodic Re-Certification & Continuous Compliance,CONTINUOUS_ASSESSMENT,Ongoing micro-assessments
+5,Compliance Co-Pilot,F5.1,AI-Powered Policy Search & Retrieval,SEARCH_POLICIES,Search policy corpus
+5,Compliance Co-Pilot,F5.1,AI-Powered Policy Search & Retrieval,ASK_QUESTION,Ask policy question
+5,Compliance Co-Pilot,F5.1,AI-Powered Policy Search & Retrieval,FILTER_RESULTS,Filter by category/date/owner
+5,Compliance Co-Pilot,F5.1,AI-Powered Policy Search & Retrieval,VIEW_FULL_POLICY,Open complete policy
+5,Compliance Co-Pilot,F5.1,AI-Powered Policy Search & Retrieval,BOOKMARK_RESULT,Save search result
+5,Compliance Co-Pilot,F5.1,AI-Powered Policy Search & Retrieval,SHARE_ANSWER,Share policy answer with colleague
+5,Compliance Co-Pilot,F5.1,AI-Powered Policy Search & Retrieval,RATE_ANSWER,Provide feedback on answer quality
+5,Compliance Co-Pilot,F5.1,AI-Powered Policy Search & Retrieval,VIEW_RELATED,See related policies
+5,Compliance Co-Pilot,F5.2,Just-in-Time Guidance (Workflow Integration),TRIGGER_GUIDANCE,Trigger policy check in workflow
+5,Compliance Co-Pilot,F5.2,Just-in-Time Guidance (Workflow Integration),DISPLAY_NUDGE,Show policy reminder
+5,Compliance Co-Pilot,F5.2,Just-in-Time Guidance (Workflow Integration),BLOCK_VIOLATION,Prevent policy violation
+5,Compliance Co-Pilot,F5.2,Just-in-Time Guidance (Workflow Integration),LOG_INTERVENTION,Record intervention
+5,Compliance Co-Pilot,F5.2,Just-in-Time Guidance (Workflow Integration),ESCALATE_QUESTION,Route complex question to expert
+5,Compliance Co-Pilot,F5.3,Personal Policy Library,VIEW_LIBRARY,See personal policy library
+5,Compliance Co-Pilot,F5.3,Personal Policy Library,BOOKMARK_POLICY,Save policy for quick access
+5,Compliance Co-Pilot,F5.3,Personal Policy Library,VIEW_RECENT,See recently viewed policies
+5,Compliance Co-Pilot,F5.3,Personal Policy Library,GET_RECOMMENDATIONS,See role-specific policy recommendations
+5,Compliance Co-Pilot,F5.3,Personal Policy Library,SUBSCRIBE_UPDATES,Subscribe to policy updates
+5,Compliance Co-Pilot,F5.3,Personal Policy Library,CREATE_SHORTCUT,Add policy to quick access
+5,Compliance Co-Pilot,F5.4,Violation Tracking & Incident Correlation,LOG_VIOLATION,Record policy violation
+5,Compliance Co-Pilot,F5.4,Violation Tracking & Incident Correlation,LINK_TO_INCIDENT,Correlate violation with incident
+5,Compliance Co-Pilot,F5.4,Violation Tracking & Incident Correlation,CATEGORIZE_VIOLATION,Classify violation severity
+5,Compliance Co-Pilot,F5.4,Violation Tracking & Incident Correlation,ASSIGN_REMEDIATION,Create remediation action plan
+5,Compliance Co-Pilot,F5.4,Violation Tracking & Incident Correlation,TRACK_REMEDIATION_PROGRESS,Monitor remediation completion
+5,Compliance Co-Pilot,F5.4,Violation Tracking & Incident Correlation,REQUIRE_POLICY_RETRAINING,Mandate re-training after violation
+5,Compliance Co-Pilot,F5.4,Violation Tracking & Incident Correlation,ESCALATE_TO_MANAGER,Notify manager of violation
+5,Compliance Co-Pilot,F5.4,Violation Tracking & Incident Correlation,GENERATE_VIOLATION_REPORT,Report on violations by policy/user
+5,Compliance Co-Pilot,F5.4,Violation Tracking & Incident Correlation,IDENTIFY_SYSTEMIC_ISSUES,Detect patterns in violations
+5,Compliance Co-Pilot,F5.4,Violation Tracking & Incident Correlation,CREATE_CORRECTIVE_ACTION,Formal corrective action plan
+5,Compliance Co-Pilot,F5.4,Violation Tracking & Incident Correlation,CLOSE_VIOLATION,Mark violation resolved
+5,Compliance Co-Pilot,F5.4,Violation Tracking & Incident Correlation,PREVENT_REPEAT_VIOLATIONS,Flag high-risk users
+5,Compliance Co-Pilot,F5.5,Exception Management & Approval Workflows,REQUEST_EXCEPTION,Request exemption from policy
+5,Compliance Co-Pilot,F5.5,Exception Management & Approval Workflows,SPECIFY_EXCEPTION_REASON,Provide business justification
+5,Compliance Co-Pilot,F5.5,Exception Management & Approval Workflows,ROUTE_FOR_APPROVAL,Send to appropriate approver
+5,Compliance Co-Pilot,F5.5,Exception Management & Approval Workflows,APPROVE_EXCEPTION,Grant exception
+5,Compliance Co-Pilot,F5.5,Exception Management & Approval Workflows,DENY_EXCEPTION,Reject exception request
+5,Compliance Co-Pilot,F5.5,Exception Management & Approval Workflows,SET_EXCEPTION_DURATION,Define time limit for exception
+5,Compliance Co-Pilot,F5.5,Exception Management & Approval Workflows,ATTACH_CONDITIONS,Add conditions to exception
+5,Compliance Co-Pilot,F5.5,Exception Management & Approval Workflows,TRACK_ACTIVE_EXCEPTIONS,Monitor current exceptions
+5,Compliance Co-Pilot,F5.5,Exception Management & Approval Workflows,NOTIFY_EXPIRATION,Alert before exception expires
+5,Compliance Co-Pilot,F5.5,Exception Management & Approval Workflows,AUTO_EXPIRE_EXCEPTION,Revoke expired exceptions
+5,Compliance Co-Pilot,F5.5,Exception Management & Approval Workflows,RENEW_EXCEPTION,Request extension
+5,Compliance Co-Pilot,F5.5,Exception Management & Approval Workflows,AUDIT_EXCEPTION_USAGE,Review exception patterns
+5,Compliance Co-Pilot,F5.6,Pre-Action Compliance Checks & Attestation,CONFIGURE_CHECKPOINT,Define compliance checkpoint
+5,Compliance Co-Pilot,F5.6,Pre-Action Compliance Checks & Attestation,TRIGGER_PRE_ACTION_CHECK,Verify compliance before action
+5,Compliance Co-Pilot,F5.6,Pre-Action Compliance Checks & Attestation,DISPLAY_RELEVANT_POLICY,Show applicable policy sections
+5,Compliance Co-Pilot,F5.6,Pre-Action Compliance Checks & Attestation,REQUIRE_ATTESTATION,Mandate compliance attestation
+5,Compliance Co-Pilot,F5.6,Pre-Action Compliance Checks & Attestation,VERIFY_KNOWLEDGE,Quick knowledge check before action
+5,Compliance Co-Pilot,F5.6,Pre-Action Compliance Checks & Attestation,BLOCK_NON_COMPLIANT_ACTION,Prevent policy violation
+5,Compliance Co-Pilot,F5.6,Pre-Action Compliance Checks & Attestation,ALLOW_WITH_WARNING,Permit with compliance warning
+5,Compliance Co-Pilot,F5.6,Pre-Action Compliance Checks & Attestation,ESCALATE_FOR_APPROVAL,Require manager approval for edge cases
+5,Compliance Co-Pilot,F5.6,Pre-Action Compliance Checks & Attestation,LOG_ATTESTATION,Record compliance attestation
+5,Compliance Co-Pilot,F5.6,Pre-Action Compliance Checks & Attestation,TRACK_ATTESTATION_PATTERNS,Monitor attestation behavior
+5,Compliance Co-Pilot,F5.6,Pre-Action Compliance Checks & Attestation,RISK_SCORE_USER,Calculate compliance risk score
+5,Compliance Co-Pilot,F5.6,Pre-Action Compliance Checks & Attestation,ADAPTIVE_CHECKPOINT,Adjust check frequency based on risk
+5,Compliance Co-Pilot,F5.7,Continuous Monitoring & Behavioral Analytics,MONITOR_USER_ACTIVITY,Track actions across integrated systems
+5,Compliance Co-Pilot,F5.7,Continuous Monitoring & Behavioral Analytics,DETECT_ANOMALIES,Identify unusual behavior
+5,Compliance Co-Pilot,F5.7,Continuous Monitoring & Behavioral Analytics,PREDICT_VIOLATION_RISK,ML-based violation prediction
+5,Compliance Co-Pilot,F5.7,Continuous Monitoring & Behavioral Analytics,TRIGGER_PROACTIVE_NUDGE,Send preventive reminder
+5,Compliance Co-Pilot,F5.7,Continuous Monitoring & Behavioral Analytics,ESCALATE_HIGH_RISK_BEHAVIOR,Alert manager of concerning patterns
+5,Compliance Co-Pilot,F5.7,Continuous Monitoring & Behavioral Analytics,BENCHMARK_AGAINST_PEERS,Compare behavior to similar roles
+5,Compliance Co-Pilot,F5.7,Continuous Monitoring & Behavioral Analytics,IDENTIFY_PROCESS_GAPS,Find systemic compliance issues
+5,Compliance Co-Pilot,F5.7,Continuous Monitoring & Behavioral Analytics,CONTINUOUS_LEARNING,Update risk models with new data
+5,Compliance Co-Pilot,F5.7,Continuous Monitoring & Behavioral Analytics,CONFIGURE_ALERT_THRESHOLDS,Set sensitivity for monitoring
+5,Compliance Co-Pilot,F5.7,Continuous Monitoring & Behavioral Analytics,VIEW_BEHAVIORAL_DASHBOARD,Monitor real-time compliance health
+5,Compliance Co-Pilot,F5.7,Continuous Monitoring & Behavioral Analytics,EXPORT_BEHAVIORAL_DATA,Extract data for external analysis
+5,Compliance Co-Pilot,F5.7,Continuous Monitoring & Behavioral Analytics,PRIVACY_CONTROLS,Manage monitoring transparency
+6,Analytics & Review Management,F6.1,Policy Analytics Dashboard,VIEW_OVERVIEW,View high-level policy metrics
+6,Analytics & Review Management,F6.1,Policy Analytics Dashboard,FILTER_BY_POLICY,Filter analytics by specific policy
+6,Analytics & Review Management,F6.1,Policy Analytics Dashboard,FILTER_BY_DEPARTMENT,Filter analytics by department/group
+6,Analytics & Review Management,F6.1,Policy Analytics Dashboard,FILTER_BY_DATE_RANGE,Adjust time period for analysis
+6,Analytics & Review Management,F6.1,Policy Analytics Dashboard,VIEW_COMPLIANCE_TREND,View compliance rate over time
+6,Analytics & Review Management,F6.1,Policy Analytics Dashboard,VIEW_ENGAGEMENT_METRICS,View engagement statistics
+6,Analytics & Review Management,F6.1,Policy Analytics Dashboard,IDENTIFY_LAGGARDS,See who hasn't acknowledged
+6,Analytics & Review Management,F6.1,Policy Analytics Dashboard,EXPORT_REPORT,Export analytics data
+6,Analytics & Review Management,F6.1,Policy Analytics Dashboard,SCHEDULE_REPORT,Schedule recurring reports
+6,Analytics & Review Management,F6.1,Policy Analytics Dashboard,DRILL_DOWN,Investigate specific metric
+6,Analytics & Review Management,F6.2,Automated Review Triggers,CONFIGURE_TRIGGER,Set up review trigger rules
+6,Analytics & Review Management,F6.2,Automated Review Triggers,SET_COMPLIANCE_THRESHOLD,Trigger review when compliance drops
+6,Analytics & Review Management,F6.2,Automated Review Triggers,SET_INCIDENT_TRIGGER,Trigger review after incidents
+6,Analytics & Review Management,F6.2,Automated Review Triggers,SET_REGULATORY_TRIGGER,Trigger on regulatory changes
+6,Analytics & Review Management,F6.2,Automated Review Triggers,SET_FEEDBACK_TRIGGER,Trigger based on user feedback
+6,Analytics & Review Management,F6.2,Automated Review Triggers,VIEW_TRIGGERED_REVIEWS,See policies flagged for review
+6,Analytics & Review Management,F6.2,Automated Review Triggers,ASSIGN_REVIEW_OWNER,Assign review to user
+6,Analytics & Review Management,F6.2,Automated Review Triggers,TRACK_REVIEW_PROGRESS,Monitor review status
+6,Analytics & Review Management,F6.2,Automated Review Triggers,OVERRIDE_TRIGGER,Manually dismiss false positive
+6,Analytics & Review Management,F6.2,Automated Review Triggers,ESCALATE_REVIEW,Escalate overdue review
+6,Analytics & Review Management,F6.3,Compliance Reporting & Audit Trail,GENERATE_AUDIT_REPORT,Create audit-ready report
+6,Analytics & Review Management,F6.3,Compliance Reporting & Audit Trail,FILTER_BY_USER,View individual compliance record
+6,Analytics & Review Management,F6.3,Compliance Reporting & Audit Trail,FILTER_BY_POLICY,View policy-level audit trail
+6,Analytics & Review Management,F6.3,Compliance Reporting & Audit Trail,EXPORT_EVIDENCE,Export compliance evidence
+6,Analytics & Review Management,F6.3,Compliance Reporting & Audit Trail,TRACK_CERTIFICATION,Monitor compliance for certification
+6,Analytics & Review Management,F6.3,Compliance Reporting & Audit Trail,VIEW_SIGNATURE_PROOF,Verify digital signature
+6,Analytics & Review Management,F6.3,Compliance Reporting & Audit Trail,GENERATE_USER_CERTIFICATE,Create completion certificate
+6,Analytics & Review Management,F6.3,Compliance Reporting & Audit Trail,SCHEDULE_AUDIT_REPORT,Automate recurring reports
+6,Analytics & Review Management,F6.3,Compliance Reporting & Audit Trail,COMPARE_VERSIONS,Audit policy changes over time
+6,Analytics & Review Management,F6.3,Compliance Reporting & Audit Trail,EXPORT_RAW_DATA,Export underlying data for analysis
+6,Analytics & Review Management,F6.4,Policy Effectiveness Metrics,VIEW_IMPACT_METRICS,See policy effectiveness measures
+6,Analytics & Review Management,F6.4,Policy Effectiveness Metrics,CORRELATE_INCIDENTS,Link incidents to policy violations
+6,Analytics & Review Management,F6.4,Policy Effectiveness Metrics,MEASURE_RETENTION,Test knowledge retention over time
+6,Analytics & Review Management,F6.4,Policy Effectiveness Metrics,TRACK_BEHAVIORAL_CHANGE,Monitor behavior changes post-policy
+6,Analytics & Review Management,F6.4,Policy Effectiveness Metrics,BENCHMARK_PERFORMANCE,Compare to industry standards
+6,Analytics & Review Management,F6.4,Policy Effectiveness Metrics,IDENTIFY_KNOWLEDGE_GAPS,Find areas of confusion
+6,Analytics & Review Management,F6.4,Policy Effectiveness Metrics,A/B_TEST_POLICY,Test policy variations
+6,Analytics & Review Management,F6.4,Policy Effectiveness Metrics,CALCULATE_ROI,Measure policy program ROI
+6,Analytics & Review Management,F6.4,Policy Effectiveness Metrics,VIEW_HEATMAP,See engagement patterns
+6,Analytics & Review Management,F6.4,Policy Effectiveness Metrics,PREDICT_RISK,Identify high-risk users/departments
+6,Analytics & Review Management,F6.5,Executive Summary Dashboards & C-Suite Reporting,VIEW_EXECUTIVE_DASHBOARD,Access C-suite compliance overview
+6,Analytics & Review Management,F6.5,Executive Summary Dashboards & C-Suite Reporting,TRACK_STRATEGIC_KPIS,Monitor top-level metrics
+6,Analytics & Review Management,F6.5,Executive Summary Dashboards & C-Suite Reporting,VIEW_RISK_HEATMAP,See compliance risk by department
+6,Analytics & Review Management,F6.5,Executive Summary Dashboards & C-Suite Reporting,DRILL_DOWN_FROM_SUMMARY,Investigate specific area
+6,Analytics & Review Management,F6.5,Executive Summary Dashboards & C-Suite Reporting,COMPARE_TO_TARGETS,Track against goals
+6,Analytics & Review Management,F6.5,Executive Summary Dashboards & C-Suite Reporting,VIEW_TREND_INDICATORS,See directional changes
+6,Analytics & Review Management,F6.5,Executive Summary Dashboards & C-Suite Reporting,SCHEDULE_EXEC_REPORT,Automate weekly/monthly executive summary
+6,Analytics & Review Management,F6.5,Executive Summary Dashboards & C-Suite Reporting,CUSTOMIZE_EXEC_VIEW,Personalize dashboard for exec role
+6,Analytics & Review Management,F6.5,Executive Summary Dashboards & C-Suite Reporting,ONE_PAGE_SUMMARY,Generate single-page overview
+6,Analytics & Review Management,F6.5,Executive Summary Dashboards & C-Suite Reporting,BOARD_PRESENTATION_MODE,Format for board meetings
+6,Analytics & Review Management,F6.5,Executive Summary Dashboards & C-Suite Reporting,ALERT_ON_RISK_THRESHOLD,Notify execs of critical issues
+6,Analytics & Review Management,F6.5,Executive Summary Dashboards & C-Suite Reporting,COMPARE_PERIODS,Year-over-year or quarter-over-quarter
+6,Analytics & Review Management,F6.6,Predictive Compliance Risk Analytics,GENERATE_RISK_PREDICTIONS,Forecast future compliance issues
+6,Analytics & Review Management,F6.6,Predictive Compliance Risk Analytics,IDENTIFY_AT_RISK_USERS,Find employees likely to violate policies
+6,Analytics & Review Management,F6.6,Predictive Compliance Risk Analytics,IDENTIFY_AT_RISK_DEPARTMENTS,Find high-risk organizational units
+6,Analytics & Review Management,F6.6,Predictive Compliance Risk Analytics,PREDICT_ACKNOWLEDGMENT_GAPS,Forecast who won't acknowledge on time
+6,Analytics & Review Management,F6.6,Predictive Compliance Risk Analytics,FORECAST_TRAINING_NEEDS,Predict knowledge decay
+6,Analytics & Review Management,F6.6,Predictive Compliance Risk Analytics,SCENARIO_MODELING,"""What-if"" analysis"
+6,Analytics & Review Management,F6.6,Predictive Compliance Risk Analytics,TREND_EXTRAPOLATION,Project future compliance rates
+6,Analytics & Review Management,F6.6,Predictive Compliance Risk Analytics,ANOMALY_DETECTION,Identify unusual patterns
+6,Analytics & Review Management,F6.6,Predictive Compliance Risk Analytics,EARLY_WARNING_ALERTS,Proactive risk notifications
+6,Analytics & Review Management,F6.6,Predictive Compliance Risk Analytics,RISK_FACTOR_ANALYSIS,Understand risk drivers
+6,Analytics & Review Management,F6.6,Predictive Compliance Risk Analytics,MODEL_ACCURACY_TRACKING,Monitor prediction quality
+6,Analytics & Review Management,F6.6,Predictive Compliance Risk Analytics,CONTINUOUS_MODEL_TRAINING,Improve predictions with new data
+6,Analytics & Review Management,F6.7,Regulatory Framework Mapping & Compliance Reports,MAP_TO_FRAMEWORK,Link policy to regulatory requirement
+6,Analytics & Review Management,F6.7,Regulatory Framework Mapping & Compliance Reports,SELECT_FRAMEWORK,Choose applicable regulation
+6,Analytics & Review Management,F6.7,Regulatory Framework Mapping & Compliance Reports,AUTO_MAP_POLICIES,AI-suggested policy mappings
+6,Analytics & Review Management,F6.7,Regulatory Framework Mapping & Compliance Reports,IDENTIFY_COVERAGE_GAPS,Find unmapped requirements
+6,Analytics & Review Management,F6.7,Regulatory Framework Mapping & Compliance Reports,GENERATE_COMPLIANCE_MATRIX,Create requirements traceability matrix
+6,Analytics & Review Management,F6.7,Regulatory Framework Mapping & Compliance Reports,TRACK_CONTROL_EFFECTIVENESS,Monitor control performance
+6,Analytics & Review Management,F6.7,Regulatory Framework Mapping & Compliance Reports,GENERATE_AUDIT_EVIDENCE,Package evidence for auditors
+6,Analytics & Review Management,F6.7,Regulatory Framework Mapping & Compliance Reports,CONTINUOUS_COMPLIANCE_MONITORING,Real-time compliance status
+6,Analytics & Review Management,F6.7,Regulatory Framework Mapping & Compliance Reports,EVIDENCE_COLLECTION,Automatic evidence gathering
+6,Analytics & Review Management,F6.7,Regulatory Framework Mapping & Compliance Reports,AUDITOR_PORTAL,Provide auditor access
+6,Analytics & Review Management,F6.7,Regulatory Framework Mapping & Compliance Reports,CERTIFICATION_READINESS,Assess readiness for certification
+6,Analytics & Review Management,F6.7,Regulatory Framework Mapping & Compliance Reports,MULTI_FRAMEWORK_SUPPORT,Map to multiple frameworks simultaneously
+6,Analytics & Review Management,F6.8,Industry Benchmarking & Peer Comparison,SELECT_INDUSTRY,Choose industry for comparison
+6,Analytics & Review Management,F6.8,Industry Benchmarking & Peer Comparison,SELECT_COMPANY_SIZE,Filter by organization size
+6,Analytics & Review Management,F6.8,Industry Benchmarking & Peer Comparison,VIEW_BENCHMARK_COMPARISON,See org vs. industry average
+6,Analytics & Review Management,F6.8,Industry Benchmarking & Peer Comparison,COMPARE_COMPLIANCE_RATE,Benchmark acknowledgment rate
+6,Analytics & Review Management,F6.8,Industry Benchmarking & Peer Comparison,COMPARE_TIME_TO_ACKNOWLEDGE,Benchmark response time
+6,Analytics & Review Management,F6.8,Industry Benchmarking & Peer Comparison,COMPARE_COMPREHENSION_SCORES,Benchmark understanding
+6,Analytics & Review Management,F6.8,Industry Benchmarking & Peer Comparison,COMPARE_POLICY_COUNTS,Benchmark policy portfolio size
+6,Analytics & Review Management,F6.8,Industry Benchmarking & Peer Comparison,IDENTIFY_BEST_PRACTICES,Learn from top performers
+6,Analytics & Review Management,F6.8,Industry Benchmarking & Peer Comparison,ANONYMIZED_DATA_SHARING,Opt into benchmark pool
+6,Analytics & Review Management,F6.8,Industry Benchmarking & Peer Comparison,TREND_COMPARISON,See industry trends over time
+6,Analytics & Review Management,F6.8,Industry Benchmarking & Peer Comparison,EXPORT_BENCHMARK_REPORT,Generate comparison report
+6,Analytics & Review Management,F6.8,Industry Benchmarking & Peer Comparison,ALERT_ON_UNDERPERFORMANCE,Notify when below industry standard
+7,Administration & Configuration,F7.1,User & Access Management,ADD_USER,Create new user account
+7,Administration & Configuration,F7.1,User & Access Management,IMPORT_USERS,Bulk import users from CSV/SCIM
+7,Administration & Configuration,F7.1,User & Access Management,CONFIGURE_SSO,Set up single sign-on
+7,Administration & Configuration,F7.1,User & Access Management,ASSIGN_ROLE,Assign role to user
+7,Administration & Configuration,F7.1,User & Access Management,CREATE_CUSTOM_ROLE,Define custom permission set
+7,Administration & Configuration,F7.1,User & Access Management,MANAGE_DEPARTMENTS,Define organizational hierarchy
+7,Administration & Configuration,F7.1,User & Access Management,DEACTIVATE_USER,Remove user access
+7,Administration & Configuration,F7.1,User & Access Management,CONFIGURE_SCIM,Enable automated provisioning
+7,Administration & Configuration,F7.1,User & Access Management,VIEW_AUDIT_LOG,Review user activity
+7,Administration & Configuration,F7.1,User & Access Management,SET_PASSWORD_POLICY,Configure password requirements
+7,Administration & Configuration,F7.2,Integration Hub,BROWSE_INTEGRATIONS,View available integrations
+7,Administration & Configuration,F7.2,Integration Hub,CONNECT_INTEGRATION,Enable integration
+7,Administration & Configuration,F7.2,Integration Hub,CONFIGURE_SYNC,Set sync parameters
+7,Administration & Configuration,F7.2,Integration Hub,MAP_FIELDS,Map data fields between systems
+7,Administration & Configuration,F7.2,Integration Hub,TEST_CONNECTION,Verify integration working
+7,Administration & Configuration,F7.2,Integration Hub,VIEW_SYNC_LOGS,Review integration activity
+7,Administration & Configuration,F7.2,Integration Hub,CREATE_WEBHOOK,Set up event-driven integration
+7,Administration & Configuration,F7.2,Integration Hub,MANAGE_API_KEYS,Generate API credentials
+7,Administration & Configuration,F7.2,Integration Hub,CONFIGURE_JUST_IN_TIME,Set up workflow integrations
+7,Administration & Configuration,F7.2,Integration Hub,DISCONNECT_INTEGRATION,Remove integration
+7,Administration & Configuration,F7.3,Platform Configuration,CUSTOMIZE_BRANDING,"Set logo, colors, domain"
+7,Administration & Configuration,F7.3,Platform Configuration,CONFIGURE_NOTIFICATIONS,Set notification preferences
+7,Administration & Configuration,F7.3,Platform Configuration,DEFINE_WORKFLOWS,Create custom approval workflows
+7,Administration & Configuration,F7.3,Platform Configuration,MANAGE_TEMPLATES,Create/edit policy templates
+7,Administration & Configuration,F7.3,Platform Configuration,SET_RETENTION_POLICY,Configure data retention rules
+7,Administration & Configuration,F7.3,Platform Configuration,CONFIGURE_GAMIFICATION,Enable/customize gamification
+7,Administration & Configuration,F7.3,Platform Configuration,SET_SECURITY_POLICIES,Configure security settings
+7,Administration & Configuration,F7.3,Platform Configuration,MANAGE_LANGUAGES,Configure multilingual support
+7,Administration & Configuration,F7.3,Platform Configuration,CUSTOMIZE_FIELDS,Add custom metadata fields
+7,Administration & Configuration,F7.3,Platform Configuration,EXPORT_CONFIGURATION,Backup platform settings
+7,Administration & Configuration,F7.4,System Monitoring & Audit Logs,VIEW_AUDIT_LOG,Review all system activity
+7,Administration & Configuration,F7.4,System Monitoring & Audit Logs,FILTER_BY_USER,See specific user's actions
+7,Administration & Configuration,F7.4,System Monitoring & Audit Logs,FILTER_BY_ACTION,Filter by action type
+7,Administration & Configuration,F7.4,System Monitoring & Audit Logs,FILTER_BY_DATE,View activity in date range
+7,Administration & Configuration,F7.4,System Monitoring & Audit Logs,EXPORT_AUDIT_LOG,Download audit data
+7,Administration & Configuration,F7.4,System Monitoring & Audit Logs,VIEW_SYSTEM_HEALTH,Monitor platform performance
+7,Administration & Configuration,F7.4,System Monitoring & Audit Logs,VIEW_ERROR_LOGS,Review system errors
+7,Administration & Configuration,F7.4,System Monitoring & Audit Logs,SET_ALERT,Configure monitoring alerts
+7,Administration & Configuration,F7.4,System Monitoring & Audit Logs,VIEW_API_USAGE,Monitor API consumption
+7,Administration & Configuration,F7.4,System Monitoring & Audit Logs,INVESTIGATE_INCIDENT,Deep-dive into specific event
