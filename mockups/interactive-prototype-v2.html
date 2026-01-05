@@ -1,0 +1,2325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolicyHub - Interactive Prototype v2</title>
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --primary-blue-dark: #1d4ed8;
+            --primary-blue-light: #3b82f6;
+            --success-green: #10b981;
+            --success-green-dark: #059669;
+            --warning-orange: #f59e0b;
+            --warning-orange-dark: #d97706;
+            --danger-red: #ef4444;
+            --danger-red-dark: #dc2626;
+            --purple: #8b5cf6;
+            --purple-dark: #7c3aed;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --sidebar-width: 260px;
+            --header-height: 64px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-900);
+            line-height: 1.6;
+        }
+
+        /* SVG Icons */
+        .svg-icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .svg-icon-sm {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background: #ffffff;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-light));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-box {
+            position: relative;
+            width: 400px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.625rem 1rem 0.625rem 2.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 10px;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.875rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-400);
+        }
+
+        .ai-search-btn {
+            position: absolute;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 0.375rem 0.75rem;
+            background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            transition: all 0.2s;
+        }
+
+        .ai-search-btn:hover {
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .notification-btn {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--gray-300);
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .notification-btn:hover {
+            background: var(--gray-50);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 18px;
+            height: 18px;
+            background: var(--danger-red);
+            border-radius: 50%;
+            font-size: 0.625rem;
+            color: white;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .user-menu:hover {
+            background: var(--gray-50);
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-light));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-name {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .user-role {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: var(--header-height);
+            width: var(--sidebar-width);
+            height: calc(100vh - var(--header-height));
+            background: #ffffff;
+            border-right: 1px solid var(--gray-200);
+            padding: 1.5rem 0;
+            overflow-y: auto;
+            z-index: 50;
+        }
+
+        .nav-section {
+            margin-bottom: 2rem;
+        }
+
+        .nav-section-title {
+            padding: 0 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-item {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--gray-700);
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-left: 3px solid transparent;
+            position: relative;
+        }
+
+        .nav-item:hover {
+            background: var(--gray-50);
+            color: var(--gray-900);
+        }
+
+        .nav-item.active {
+            background: rgba(37, 99, 235, 0.08);
+            color: var(--primary-blue);
+            border-left-color: var(--primary-blue);
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .nav-badge {
+            margin-left: auto;
+            background: var(--danger-red);
+            color: white;
+            font-size: 0.625rem;
+            font-weight: 700;
+            padding: 0.125rem 0.5rem;
+            border-radius: 10px;
+        }
+
+        .ai-badge {
+            background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+            margin-left: auto;
+            padding: 0.125rem 0.5rem;
+            border-radius: 10px;
+            font-size: 0.625rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        /* Main Content */
+        .main-container {
+            margin-left: var(--sidebar-width);
+            margin-top: var(--header-height);
+            min-height: calc(100vh - var(--header-height));
+        }
+
+        .content {
+            padding: 2rem;
+            max-width: 1600px;
+            display: none;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        .page-header {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+        }
+
+        .page-title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-subtitle {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        /* AI Floating Button */
+        .ai-floating-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+            transition: all 0.3s;
+            z-index: 999;
+        }
+
+        .ai-floating-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+        }
+
+        .ai-floating-btn.pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4); }
+            50% { box-shadow: 0 4px 20px rgba(139, 92, 246, 0.6); }
+        }
+
+        /* AI Chat Overlay */
+        .ai-chat-overlay {
+            position: fixed;
+            bottom: 90px;
+            right: 2rem;
+            width: 400px;
+            height: 600px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 998;
+        }
+
+        .ai-chat-overlay.active {
+            display: flex;
+        }
+
+        .ai-chat-header {
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+            color: white;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .ai-chat-header h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .ai-chat-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .ai-chat-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-with-ai {
+            position: relative;
+        }
+
+        .ai-suggestion-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+            color: white;
+            padding: 0.375rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .ai-suggestion-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            padding: 1.5rem;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .stat-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            transform: rotate(30deg);
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-icon.blue { background: rgba(37, 99, 235, 0.1); color: var(--primary-blue); }
+        .stat-icon.green { background: rgba(16, 185, 129, 0.1); color: var(--success-green); }
+        .stat-icon.orange { background: rgba(245, 158, 11, 0.1); color: var(--warning-orange); }
+        .stat-icon.red { background: rgba(239, 68, 68, 0.1); color: var(--danger-red); }
+        .stat-icon.purple { background: rgba(139, 92, 246, 0.1); color: var(--purple); }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-change {
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .stat-change.positive { color: var(--success-green); }
+        .stat-change.negative { color: var(--danger-red); }
+        .stat-change.neutral { color: var(--gray-600); }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.25rem;
+            border-radius: 10px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: var(--primary-blue-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--gray-700);
+            border: 1px solid var(--gray-300);
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: var(--gray-50);
+        }
+
+        .btn-success {
+            background: var(--success-green);
+            color: white;
+        }
+
+        .btn-success:hover:not(:disabled) {
+            background: var(--success-green-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-danger {
+            background: var(--danger-red);
+            color: white;
+        }
+
+        .btn-danger:hover:not(:disabled) {
+            background: var(--danger-red-dark);
+        }
+
+        .btn-ai {
+            background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+            color: white;
+        }
+
+        .btn-ai:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-primary { background: rgba(37, 99, 235, 0.1); color: var(--primary-blue); }
+        .badge-success { background: rgba(16, 185, 129, 0.1); color: var(--success-green); }
+        .badge-warning { background: rgba(245, 158, 11, 0.1); color: var(--warning-orange); }
+        .badge-danger { background: rgba(239, 68, 68, 0.1); color: var(--danger-red); }
+
+        /* Action List */
+        .action-list {
+            list-style: none;
+        }
+
+        .action-item {
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+
+        .action-item:hover {
+            background: var(--gray-50);
+        }
+
+        .action-item:last-child {
+            border-bottom: none;
+        }
+
+        .action-info h4 {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.375rem;
+        }
+
+        .action-info p {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        /* Policy Review Screen */
+        .policy-review {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .policy-header-card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .policy-title-large {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+
+        .policy-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .policy-meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .policy-meta-label {
+            font-size: 0.75rem;
+            color: var(--gray-600);
+            margin-bottom: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .policy-meta-value {
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .policy-content {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            padding: 3rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .policy-content h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            color: var(--gray-900);
+        }
+
+        .policy-content h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem;
+            color: var(--gray-900);
+        }
+
+        .policy-content p {
+            margin-bottom: 1rem;
+            color: var(--gray-700);
+        }
+
+        .policy-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .policy-content li {
+            margin-bottom: 0.5rem;
+            color: var(--gray-700);
+        }
+
+        /* Quiz Container */
+        .quiz-container {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .quiz-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .quiz-progress {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        .question {
+            margin-bottom: 2rem;
+        }
+
+        .question-text {
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .option {
+            padding: 1rem 1.25rem;
+            background: white;
+            border: 2px solid var(--gray-300);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .option:hover {
+            border-color: var(--gray-400);
+            background: var(--gray-50);
+        }
+
+        .option.selected {
+            border-color: var(--primary-blue);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .option.correct {
+            border-color: var(--success-green);
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .option.incorrect {
+            border-color: var(--danger-red);
+            background: rgba(239, 68, 68, 0.05);
+        }
+
+        .option-radio {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--gray-400);
+            border-radius: 50%;
+            position: relative;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+
+        .option.selected .option-radio {
+            border-color: var(--primary-blue);
+        }
+
+        .option.selected .option-radio::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+        }
+
+        .option.correct .option-radio {
+            border-color: var(--success-green);
+        }
+
+        .option.correct .option-radio::after {
+            background: var(--success-green);
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+        }
+
+        .feedback.correct {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-green-dark);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .feedback.incorrect {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger-red-dark);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        /* Chat Messages */
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - var(--header-height) - 8rem);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .message {
+            display: flex;
+            gap: 1rem;
+            max-width: 700px;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .message-avatar.bot {
+            background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+            color: white;
+        }
+
+        .message-avatar.user {
+            background: var(--gray-300);
+            color: var(--gray-700);
+        }
+
+        .message-content {
+            background: white;
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .message.user .message-content {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+        }
+
+        .policy-reference {
+            background: rgba(139, 92, 246, 0.05);
+            border-left: 3px solid var(--purple);
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 6px;
+        }
+
+        .policy-reference-title {
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            color: var(--purple);
+        }
+
+        .chat-input-container {
+            padding: 1.5rem;
+            background: white;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .chat-input-wrapper {
+            display: flex;
+            gap: 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 0.875rem 1rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 10px;
+            font-size: 0.9375rem;
+            font-family: inherit;
+            resize: none;
+            min-height: 48px;
+            max-height: 200px;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .send-btn {
+            width: 48px;
+            height: 48px;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .send-btn:hover {
+            background: var(--primary-blue-dark);
+            transform: scale(1.05);
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--gray-200);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--success-green);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-fill.warning { background: var(--warning-orange); }
+        .progress-fill.danger { background: var(--danger-red); }
+
+        /* Table */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--gray-200);
+            font-size: 0.875rem;
+            color: var(--gray-700);
+        }
+
+        .table tbody tr {
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+
+        .table tbody tr:hover {
+            background: var(--gray-50);
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 0.625rem 0.875rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            top: 5rem;
+            right: 2rem;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            z-index: 9999;
+            animation: slideIn 0.3s;
+            max-width: 400px;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .toast.success {
+            border-left: 4px solid var(--success-green);
+        }
+
+        .toast.error {
+            border-left: 4px solid var(--danger-red);
+        }
+
+        .toast.info {
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .toast-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .toast.success .toast-icon {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-green);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9998;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: var(--gray-100);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .modal-close:hover {
+            background: var(--gray-200);
+        }
+
+        /* Typing Indicator */
+        .typing-indicator {
+            display: flex;
+            gap: 0.375rem;
+            padding: 1rem;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--gray-400);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+            30% { transform: translateY(-8px); opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 220px;
+            }
+            .main-container {
+                margin-left: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- SVG Icons Definition -->
+    <svg style="display: none;">
+        <symbol id="icon-dashboard" viewBox="0 0 24 24">
+            <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+        </symbol>
+        <symbol id="icon-document" viewBox="0 0 24 24">
+            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+        </symbol>
+        <symbol id="icon-edit" viewBox="0 0 24 24">
+            <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+        </symbol>
+        <symbol id="icon-check" viewBox="0 0 24 24">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+        </symbol>
+        <symbol id="icon-library" viewBox="0 0 24 24">
+            <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/>
+        </symbol>
+        <symbol id="icon-sparkles" viewBox="0 0 24 24">
+            <path d="M12 2l2.4 7.2H22l-6 4.8 2.4 7.2L12 16.8 5.6 21.2 8 14l-6-4.8h7.6L12 2z"/>
+            <circle cx="6" cy="8" r="1"/>
+            <circle cx="18" cy="8" r="1"/>
+            <circle cx="6" cy="18" r="1"/>
+        </symbol>
+        <symbol id="icon-chart" viewBox="0 0 24 24">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+        </symbol>
+        <symbol id="icon-settings" viewBox="0 0 24 24">
+            <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+        </symbol>
+        <symbol id="icon-search" viewBox="0 0 24 24">
+            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        </symbol>
+        <symbol id="icon-bell" viewBox="0 0 24 24">
+            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
+        </symbol>
+        <symbol id="icon-arrow-right" viewBox="0 0 24 24">
+            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+        </symbol>
+        <symbol id="icon-close" viewBox="0 0 24 24">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        </symbol>
+    </svg>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <div class="logo-icon">PH</div>
+            PolicyHub
+        </div>
+        <div class="header-right">
+            <div class="search-box">
+                <svg class="search-icon svg-icon"><use href="#icon-search"/></svg>
+                <input type="text" class="search-input" placeholder="Search policies or ask a question..." id="global-search">
+                <button class="ai-search-btn" onclick="openAIChat()">
+                    <svg class="svg-icon-sm"><use href="#icon-sparkles"/></svg>
+                    Ask AI
+                </button>
+            </div>
+            <button class="notification-btn">
+                <svg class="svg-icon"><use href="#icon-bell"/></svg>
+                <span class="notification-badge">3</span>
+            </button>
+            <div class="user-menu">
+                <div class="user-info">
+                    <div class="user-name">John Smith</div>
+                    <div class="user-role">Compliance Manager</div>
+                </div>
+                <div class="user-avatar">JS</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="nav-section">
+            <div class="nav-section-title">Main</div>
+            <div class="nav-item active" data-view="dashboard">
+                <svg class="nav-icon svg-icon"><use href="#icon-dashboard"/></svg>
+                Dashboard
+            </div>
+            <div class="nav-item" data-view="my-policies">
+                <svg class="nav-icon svg-icon"><use href="#icon-document"/></svg>
+                My Policies
+                <span class="nav-badge">2</span>
+            </div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Workspace</div>
+            <div class="nav-item" data-view="authoring">
+                <svg class="nav-icon svg-icon"><use href="#icon-edit"/></svg>
+                Authoring
+                <span class="ai-badge">AI</span>
+            </div>
+            <div class="nav-item" data-view="approvals">
+                <svg class="nav-icon svg-icon"><use href="#icon-check"/></svg>
+                Approvals
+                <span class="nav-badge">3</span>
+            </div>
+            <div class="nav-item" data-view="library">
+                <svg class="nav-icon svg-icon"><use href="#icon-library"/></svg>
+                Policy Library
+            </div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Tools</div>
+            <div class="nav-item" data-view="assistant">
+                <svg class="nav-icon svg-icon"><use href="#icon-sparkles"/></svg>
+                AI Assistant
+                <span class="ai-badge">AI</span>
+            </div>
+            <div class="nav-item" data-view="analytics">
+                <svg class="nav-icon svg-icon"><use href="#icon-chart"/></svg>
+                Analytics
+            </div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">System</div>
+            <div class="nav-item" data-view="settings">
+                <svg class="nav-icon svg-icon"><use href="#icon-settings"/></svg>
+                Settings
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Floating Button -->
+    <button class="ai-floating-btn pulse" onclick="toggleAIChat()">
+        <svg class="svg-icon" style="width: 24px; height: 24px;"><use href="#icon-sparkles"/></svg>
+    </button>
+
+    <!-- AI Chat Overlay -->
+    <div class="ai-chat-overlay" id="ai-chat-overlay">
+        <div class="ai-chat-header">
+            <h3>
+                <svg class="svg-icon"><use href="#icon-sparkles"/></svg>
+                AI Policy Assistant
+            </h3>
+            <button class="ai-chat-close" onclick="toggleAIChat()">
+                <svg class="svg-icon-sm"><use href="#icon-close"/></svg>
+            </button>
+        </div>
+        <div class="chat-messages" id="quick-chat-messages">
+            <div class="message bot">
+                <div class="message-avatar bot">AI</div>
+                <div class="message-content">
+                    <p><strong>Hi John!</strong> I'm here to help. Ask me anything about policies.</p>
+                </div>
+            </div>
+        </div>
+        <div class="chat-input-container">
+            <div class="chat-input-wrapper">
+                <textarea class="chat-input" placeholder="Ask a question..." rows="1" id="quick-chat-input"></textarea>
+                <button class="send-btn" onclick="sendQuickChat()">
+                    <svg class="svg-icon"><use href="#icon-arrow-right"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="main-container">
+        <!-- Dashboard View -->
+        <div class="content active" id="dashboard">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Dashboard</h1>
+                    <p class="page-subtitle">Welcome back, John. Here's what's happening with your policies today.</p>
+                </div>
+                <button class="btn btn-ai" onclick="openAIChat()">
+                    <svg class="svg-icon-sm"><use href="#icon-sparkles"/></svg>
+                    Get AI Insights
+                </button>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card" onclick="navigateTo('my-policies')">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-label">Policies Requiring Action</div>
+                        </div>
+                        <div class="stat-icon orange">
+                            <svg class="svg-icon"><use href="#icon-document"/></svg>
+                        </div>
+                    </div>
+                    <div class="stat-value">5</div>
+                    <div class="stat-change positive">
+                        <svg class="svg-icon-sm" style="transform: rotate(-45deg);"><use href="#icon-arrow-right"/></svg>
+                        2 new today
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-label">Acknowledgment Rate</div>
+                        </div>
+                        <div class="stat-icon green">
+                            <svg class="svg-icon"><use href="#icon-check"/></svg>
+                        </div>
+                    </div>
+                    <div class="stat-value">94%</div>
+                    <div class="stat-change positive">
+                        <svg class="svg-icon-sm" style="transform: rotate(-45deg);"><use href="#icon-arrow-right"/></svg>
+                        +3% from last week
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-label">Active Policies</div>
+                        </div>
+                        <div class="stat-icon blue">
+                            <svg class="svg-icon"><use href="#icon-library"/></svg>
+                        </div>
+                    </div>
+                    <div class="stat-value">127</div>
+                    <div class="stat-change neutral">3 updated recently</div>
+                </div>
+
+                <div class="stat-card" onclick="navigateTo('approvals')">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-label">Pending Approvals</div>
+                        </div>
+                        <div class="stat-icon purple">
+                            <svg class="svg-icon"><use href="#icon-check"/></svg>
+                        </div>
+                    </div>
+                    <div class="stat-value">3</div>
+                    <div class="stat-change negative">
+                        <svg class="svg-icon-sm" style="transform: rotate(45deg);"><use href="#icon-arrow-right"/></svg>
+                        2 overdue
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-with-ai" style="margin-bottom: 1.5rem;">
+                <div class="ai-suggestion-badge" onclick="showAISuggestion('action-items')">
+                    <svg class="svg-icon-sm"><use href="#icon-sparkles"/></svg>
+                    AI Insight
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h2 style="font-size: 1.125rem; font-weight: 600;">Action Required</h2>
+                    <button class="btn btn-secondary" style="font-size: 0.875rem; padding: 0.5rem 1rem;">View All</button>
+                </div>
+                <ul class="action-list">
+                    <li class="action-item" onclick="navigateTo('policy-review')">
+                        <div class="action-info">
+                            <h4>Data Security Policy v3.1</h4>
+                            <p>Requires acknowledgment • 3 of 5 questions remaining</p>
+                        </div>
+                        <button class="btn btn-primary" onclick="event.stopPropagation(); navigateTo('acknowledgement')">Continue</button>
+                    </li>
+                    <li class="action-item" onclick="navigateTo('approvals')">
+                        <div class="action-info">
+                            <h4>Remote Work Policy v2.0</h4>
+                            <p>Pending your approval • Due in 2 days</p>
+                        </div>
+                        <button class="btn btn-primary" onclick="event.stopPropagation(); navigateTo('approvals')">Review</button>
+                    </li>
+                    <li class="action-item">
+                        <div class="action-info">
+                            <h4>Expense Reimbursement Policy</h4>
+                            <p>Annual review required • Overdue by 5 days</p>
+                        </div>
+                        <button class="btn btn-primary">Review</button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h2 style="font-size: 1.125rem; font-weight: 600;">Recent Activity</h2>
+                    <button class="btn btn-secondary" style="font-size: 0.875rem; padding: 0.5rem 1rem;">View All</button>
+                </div>
+                <ul class="action-list">
+                    <li class="action-item">
+                        <div class="action-info">
+                            <h4>Code of Conduct</h4>
+                            <p>Updated by Legal Team • 2 hours ago</p>
+                        </div>
+                        <span class="badge badge-primary">Updated</span>
+                    </li>
+                    <li class="action-item">
+                        <div class="action-info">
+                            <h4>Social Media Policy</h4>
+                            <p>Acknowledged by 45/50 employees • 95% complete</p>
+                        </div>
+                        <span class="badge badge-success">On Track</span>
+                    </li>
+                    <li class="action-item">
+                        <div class="action-info">
+                            <h4>Travel & Expense Policy</h4>
+                            <p>Approval pending from CFO • 3 days</p>
+                        </div>
+                        <span class="badge badge-warning">Pending</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Policy Review Screen -->
+        <div class="content" id="policy-review">
+            <div class="page-header">
+                <div>
+                    <button class="btn btn-secondary" onclick="navigateTo('dashboard')" style="margin-bottom: 1rem;">
+                        <svg class="svg-icon-sm" style="transform: rotate(180deg);"><use href="#icon-arrow-right"/></svg>
+                        Back to Dashboard
+                    </button>
+                    <h1 class="page-title">Policy Review</h1>
+                    <p class="page-subtitle">Please read this policy carefully before proceeding to acknowledgment</p>
+                </div>
+                <button class="btn btn-ai" onclick="askAIAboutPolicy()">
+                    <svg class="svg-icon-sm"><use href="#icon-sparkles"/></svg>
+                    Ask AI About This Policy
+                </button>
+            </div>
+
+            <div class="policy-review">
+                <div class="policy-header-card">
+                    <span class="badge badge-warning" style="margin-bottom: 1rem;">Acknowledgment Required</span>
+                    <h1 class="policy-title-large">Data Security & Privacy Policy</h1>
+
+                    <div class="policy-meta-grid">
+                        <div class="policy-meta-item">
+                            <div class="policy-meta-label">Version</div>
+                            <div class="policy-meta-value">v3.1</div>
+                        </div>
+                        <div class="policy-meta-item">
+                            <div class="policy-meta-label">Owner</div>
+                            <div class="policy-meta-value">Michael Chen</div>
+                        </div>
+                        <div class="policy-meta-item">
+                            <div class="policy-meta-label">Effective Date</div>
+                            <div class="policy-meta-value">Dec 1, 2024</div>
+                        </div>
+                        <div class="policy-meta-item">
+                            <div class="policy-meta-label">Category</div>
+                            <div class="policy-meta-value">IT & Security</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="policy-content">
+                    <h2>1. Purpose</h2>
+                    <p>This policy establishes the standards for protecting company and customer data, ensuring compliance with applicable privacy regulations, and maintaining the confidentiality, integrity, and availability of information assets.</p>
+
+                    <h2>2. Scope</h2>
+                    <p>This policy applies to all employees, contractors, and third parties who have access to company information systems or handle sensitive data.</p>
+
+                    <h2>3. Key Requirements</h2>
+                    <h3>Password Security</h3>
+                    <ul>
+                        <li>Use strong, unique passwords for all systems (minimum 12 characters)</li>
+                        <li>Enable multi-factor authentication (MFA) on all accounts</li>
+                        <li>Never share login credentials with anyone</li>
+                        <li>Change passwords immediately if compromise is suspected</li>
+                    </ul>
+
+                    <h3>Data Protection</h3>
+                    <ul>
+                        <li>Encrypt sensitive data both at rest and in transit</li>
+                        <li>Only access data necessary for your job responsibilities</li>
+                        <li>Never store sensitive data on personal devices</li>
+                        <li>Use approved cloud storage solutions only</li>
+                    </ul>
+
+                    <h3>Incident Response</h3>
+                    <ul>
+                        <li>Report suspected security incidents within 1 hour</li>
+                        <li>Do not attempt to investigate security incidents on your own</li>
+                        <li>Contact the Security Team immediately at security@company.com</li>
+                        <li>Preserve all evidence and do not delete any files</li>
+                    </ul>
+
+                    <h2>4. Training & Compliance</h2>
+                    <p>All employees must complete annual security awareness training. Failure to comply with this policy may result in disciplinary action, up to and including termination of employment.</p>
+                </div>
+
+                <div style="display: flex; justify-content: center; gap: 1rem; padding: 2rem 0;">
+                    <button class="btn btn-secondary" onclick="navigateTo('dashboard')">Save for Later</button>
+                    <button class="btn btn-primary" onclick="navigateTo('acknowledgement')">
+                        Proceed to Acknowledgment
+                        <svg class="svg-icon-sm"><use href="#icon-arrow-right"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Acknowledgement Screen -->
+        <div class="content" id="acknowledgement">
+            <div class="page-header">
+                <div>
+                    <button class="btn btn-secondary" onclick="navigateTo('policy-review')" style="margin-bottom: 1rem;">
+                        <svg class="svg-icon-sm" style="transform: rotate(180deg);"><use href="#icon-arrow-right"/></svg>
+                        Back to Policy
+                    </button>
+                    <h1 class="page-title">Policy Acknowledgment</h1>
+                    <p class="page-subtitle">Complete the comprehension quiz to acknowledge this policy</p>
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-size: 0.875rem; color: var(--gray-600); margin-bottom: 0.5rem;">Progress</div>
+                    <div class="progress-bar" style="width: 200px; margin-left: auto;">
+                        <div class="progress-fill" style="width: 60%;" id="quiz-progress"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-review">
+                <div class="quiz-container">
+                    <div class="quiz-header">
+                        <div>
+                            <h2 class="quiz-title">Comprehension Quiz</h2>
+                            <p style="font-size: 0.875rem; color: var(--gray-600); margin-top: 0.5rem;">Answer these questions to demonstrate your understanding</p>
+                        </div>
+                        <div class="quiz-progress">Question <span id="current-question">3</span> of 5</div>
+                    </div>
+
+                    <div class="question" id="question-1" style="display: none;">
+                        <div class="question-text">
+                            <strong>Question 1:</strong> What is the minimum password length required by this policy?
+                        </div>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, false)">
+                                <div class="option-radio"></div>
+                                <span>8 characters</span>
+                            </div>
+                            <div class="option correct" onclick="selectOption(this, true)">
+                                <div class="option-radio"></div>
+                                <span>12 characters</span>
+                            </div>
+                            <div class="option" onclick="selectOption(this, false)">
+                                <div class="option-radio"></div>
+                                <span>16 characters</span>
+                            </div>
+                            <div class="option" onclick="selectOption(this, false)">
+                                <div class="option-radio"></div>
+                                <span>No minimum specified</span>
+                            </div>
+                        </div>
+                        <div class="feedback correct" style="display: none;">
+                            <strong>✓ Correct!</strong> The policy requires a minimum of 12 characters for all passwords.
+                        </div>
+                        <div class="feedback incorrect" style="display: none;">
+                            <strong>✗ Not quite.</strong> According to Section 3, passwords must be at least 12 characters long. Please try again.
+                        </div>
+                    </div>
+
+                    <div class="question" id="question-2" style="display: none;">
+                        <div class="question-text">
+                            <strong>Question 2:</strong> How quickly must you report a suspected security incident?
+                        </div>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, false)">
+                                <div class="option-radio"></div>
+                                <span>Within 24 hours</span>
+                            </div>
+                            <div class="option correct" onclick="selectOption(this, true)">
+                                <div class="option-radio"></div>
+                                <span>Within 1 hour</span>
+                            </div>
+                            <div class="option" onclick="selectOption(this, false)">
+                                <div class="option-radio"></div>
+                                <span>Within 1 business day</span>
+                            </div>
+                            <div class="option" onclick="selectOption(this, false)">
+                                <div class="option-radio"></div>
+                                <span>At your earliest convenience</span>
+                            </div>
+                        </div>
+                        <div class="feedback correct" style="display: none;">
+                            <strong>✓ Excellent!</strong> Security incidents must be reported within 1 hour to minimize potential damage.
+                        </div>
+                        <div class="feedback incorrect" style="display: none;">
+                            <strong>✗ Incorrect.</strong> Section 3 requires reporting within 1 hour. Time is critical in security incidents!
+                        </div>
+                    </div>
+
+                    <div class="question" id="question-3">
+                        <div class="question-text">
+                            <strong>Question 3:</strong> Which of the following is required for all employee accounts?
+                        </div>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, false)">
+                                <div class="option-radio"></div>
+                                <span>Biometric authentication</span>
+                            </div>
+                            <div class="option correct" onclick="selectOption(this, true)">
+                                <div class="option-radio"></div>
+                                <span>Multi-factor authentication (MFA)</span>
+                            </div>
+                            <div class="option" onclick="selectOption(this, false)">
+                                <div class="option-radio"></div>
+                                <span>Hardware security keys</span>
+                            </div>
+                            <div class="option" onclick="selectOption(this, false)">
+                                <div class="option-radio"></div>
+                                <span>Monthly password changes</span>
+                            </div>
+                        </div>
+                        <div class="feedback correct" style="display: none;">
+                            <strong>✓ Perfect!</strong> MFA adds an extra layer of security beyond just passwords.
+                        </div>
+                        <div class="feedback incorrect" style="display: none;">
+                            <strong>✗ Not correct.</strong> The policy specifically requires multi-factor authentication (MFA) on all accounts.
+                        </div>
+                    </div>
+
+                    <div class="question" id="question-4" style="display: none;">
+                        <div class="question-text">
+                            <strong>Question 4:</strong> What should you do if you suspect your credentials have been compromised?
+                        </div>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, false)">
+                                <div class="option-radio"></div>
+                                <span>Wait for IT to contact you</span>
+                            </div>
+                            <div class="option" onclick="selectOption(this, false)">
+                                <div class="option-radio"></div>
+                                <span>Change your password next week</span>
+                            </div>
+                            <div class="option correct" onclick="selectOption(this, true)">
+                                <div class="option-radio"></div>
+                                <span>Change your password immediately and report it</span>
+                            </div>
+                            <div class="option" onclick="selectOption(this, false)">
+                                <div class="option-radio"></div>
+                                <span>Nothing, if you're not sure</span>
+                            </div>
+                        </div>
+                        <div class="feedback correct" style="display: none;">
+                            <strong>✓ Correct!</strong> Immediate action is crucial when credentials may be compromised.
+                        </div>
+                        <div class="feedback incorrect" style="display: none;">
+                            <strong>✗ Incorrect.</strong> You should change your password immediately and report the incident.
+                        </div>
+                    </div>
+
+                    <div class="question" id="question-5" style="display: none;">
+                        <div class="question-text">
+                            <strong>Question 5:</strong> Can you store sensitive company data on your personal devices?
+                        </div>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, false)">
+                                <div class="option-radio"></div>
+                                <span>Yes, if encrypted</span>
+                            </div>
+                            <div class="option correct" onclick="selectOption(this, true)">
+                                <div class="option-radio"></div>
+                                <span>No, never</span>
+                            </div>
+                            <div class="option" onclick="selectOption(this, false)">
+                                <div class="option-radio"></div>
+                                <span>Yes, if you have permission</span>
+                            </div>
+                            <div class="option" onclick="selectOption(this, false)">
+                                <div class="option-radio"></div>
+                                <span>Yes, for work purposes</span>
+                            </div>
+                        </div>
+                        <div class="feedback correct" style="display: none;">
+                            <strong>✓ Excellent!</strong> Sensitive data should never be stored on personal devices.
+                        </div>
+                        <div class="feedback incorrect" style="display: none;">
+                            <strong>✗ Incorrect.</strong> The policy clearly states sensitive data should never be stored on personal devices.
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 2rem 0;">
+                    <button class="btn btn-secondary" onclick="previousQuestion()" id="prev-btn" style="display: none;">
+                        <svg class="svg-icon-sm" style="transform: rotate(180deg);"><use href="#icon-arrow-right"/></svg>
+                        Previous
+                    </button>
+                    <div></div>
+                    <button class="btn btn-primary" onclick="nextQuestion()" id="next-btn" disabled>
+                        Next Question
+                        <svg class="svg-icon-sm"><use href="#icon-arrow-right"/></svg>
+                    </button>
+                    <button class="btn btn-success" onclick="completeAcknowledgment()" id="complete-btn" style="display: none;">
+                        <svg class="svg-icon-sm"><use href="#icon-check"/></svg>
+                        Complete Acknowledgment
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- My Policies, Authoring, Approvals, Library, Assistant, Analytics, Settings views -->
+        <!-- (Keeping previous content for these views - condensed for space) -->
+        <div class="content" id="my-policies">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">My Policies</h1>
+                    <p class="page-subtitle">Policies assigned to you and requiring your attention</p>
+                </div>
+                <button class="btn btn-ai" onclick="getAIRecommendations()">
+                    <svg class="svg-icon-sm"><use href="#icon-sparkles"/></svg>
+                    Get Recommendations
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Policy Name</th>
+                                <th>Status</th>
+                                <th>Due Date</th>
+                                <th>Progress</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr onclick="navigateTo('policy-review')">
+                                <td>
+                                    <div style="font-weight: 600;">Data Security Policy</div>
+                                    <div style="font-size: 0.75rem; color: var(--gray-500);">Version 3.1 • IT & Security</div>
+                                </td>
+                                <td><span class="badge badge-warning">In Progress</span></td>
+                                <td>Dec 20, 2025</td>
+                                <td>
+                                    <div style="font-size: 0.75rem; margin-bottom: 0.25rem;">60% Complete</div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 60%;"></div>
+                                    </div>
+                                </td>
+                                <td><button class="btn btn-primary" style="padding: 0.5rem 1rem;" onclick="event.stopPropagation(); navigateTo('acknowledgement')">Continue</button></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div style="font-weight: 600;">Remote Work Policy</div>
+                                    <div style="font-size: 0.75rem; color: var(--gray-500);">Version 2.0 • HR Policies</div>
+                                </td>
+                                <td><span class="badge badge-success">Acknowledged</span></td>
+                                <td>Completed</td>
+                                <td>
+                                    <div style="font-size: 0.75rem; margin-bottom: 0.25rem;">100% Complete</div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 100%;"></div>
+                                    </div>
+                                </td>
+                                <td><button class="btn btn-secondary" style="padding: 0.5rem 1rem;">View</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Assistant View with Full Chat -->
+        <div class="content" id="assistant">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">AI Policy Assistant</h1>
+                    <p class="page-subtitle">Ask questions about company policies and get instant, accurate answers</p>
+                </div>
+            </div>
+
+            <div class="card chat-container">
+                <div class="chat-messages" id="main-chat-messages">
+                    <div class="message bot">
+                        <div class="message-avatar bot">AI</div>
+                        <div class="message-content">
+                            <p><strong>Hi John!</strong> I'm your AI Policy Assistant. I can help you with:</p>
+                            <ul style="margin: 0.75rem 0 0 1.25rem; line-height: 1.8;">
+                                <li>Finding specific policies quickly</li>
+                                <li>Answering questions about policy requirements</li>
+                                <li>Explaining complex policy requirements in simple terms</li>
+                                <li>Providing guidance on policy compliance</li>
+                            </ul>
+                            <p style="margin-top: 0.75rem;">Try asking: "Can I work remotely from another country?" or "What's our data retention policy?"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-container">
+                    <div class="chat-input-wrapper">
+                        <textarea class="chat-input" placeholder="Ask me anything about policies..." rows="1" id="main-chat-input"></textarea>
+                        <button class="send-btn" onclick="sendMainChat()">
+                            <svg class="svg-icon"><use href="#icon-arrow-right"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Placeholder views for other sections -->
+        <div class="content" id="authoring">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Policy Authoring</h1>
+                    <p class="page-subtitle">Create and collaborate on policy documents</p>
+                </div>
+                <button class="btn btn-ai">
+                    <svg class="svg-icon-sm"><use href="#icon-sparkles"/></svg>
+                    AI Draft Assistant
+                </button>
+            </div>
+            <div class="card">
+                <p style="color: var(--gray-600); text-align: center; padding: 3rem;">Policy authoring interface with AI assistance would appear here.</p>
+            </div>
+        </div>
+
+        <div class="content" id="approvals">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Pending Approvals</h1>
+                    <p class="page-subtitle">Review and approve policy submissions</p>
+                </div>
+            </div>
+            <div class="card">
+                <p style="color: var(--gray-600); text-align: center; padding: 3rem;">Approval workflow interface would appear here.</p>
+            </div>
+        </div>
+
+        <div class="content" id="library">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Policy Library</h1>
+                    <p class="page-subtitle">Browse and search all company policies</p>
+                </div>
+            </div>
+            <div class="card">
+                <p style="color: var(--gray-600); text-align: center; padding: 3rem;">Policy library with advanced search would appear here.</p>
+            </div>
+        </div>
+
+        <div class="content" id="analytics">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Analytics & Insights</h1>
+                    <p class="page-subtitle">Track policy performance and compliance metrics</p>
+                </div>
+                <button class="btn btn-ai">
+                    <svg class="svg-icon-sm"><use href="#icon-sparkles"/></svg>
+                    Generate Report
+                </button>
+            </div>
+            <div class="card">
+                <p style="color: var(--gray-600); text-align: center; padding: 3rem;">Analytics dashboard with AI insights would appear here.</p>
+            </div>
+        </div>
+
+        <div class="content" id="settings">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Settings</h1>
+                    <p class="page-subtitle">Manage your preferences and system configuration</p>
+                </div>
+            </div>
+            <div class="card">
+                <p style="color: var(--gray-600); text-align: center; padding: 3rem;">Settings interface would appear here.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State management
+        let currentQuestion = 3;
+        let quizAnswers = {1: true, 2: true, 3: null, 4: null, 5: null};
+        let selectedAnswer = false;
+
+        // Navigation
+        function navigateTo(view) {
+            document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+            document.querySelectorAll('.content').forEach(content => content.classList.remove('active'));
+
+            const navItem = document.querySelector(`[data-view="${view}"]`);
+            if (navItem) navItem.classList.add('active');
+
+            document.getElementById(view).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const viewId = this.getAttribute('data-view');
+                navigateTo(viewId);
+            });
+        });
+
+        // AI Chat
+        function toggleAIChat() {
+            const overlay = document.getElementById('ai-chat-overlay');
+            overlay.classList.toggle('active');
+        }
+
+        function openAIChat() {
+            document.getElementById('ai-chat-overlay').classList.add('active');
+        }
+
+        function sendQuickChat() {
+            const input = document.getElementById('quick-chat-input');
+            const message = input.value.trim();
+            if (!message) return;
+
+            const messagesContainer = document.getElementById('quick-chat-messages');
+
+            // Add user message
+            messagesContainer.innerHTML += `
+                <div class="message user">
+                    <div class="message-avatar user">JS</div>
+                    <div class="message-content">${message}</div>
+                </div>
+            `;
+
+            input.value = '';
+
+            // Show typing indicator
+            messagesContainer.innerHTML += `
+                <div class="message bot" id="typing">
+                    <div class="message-avatar bot">AI</div>
+                    <div class="message-content">
+                        <div class="typing-indicator">
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // Simulate AI response
+            setTimeout(() => {
+                document.getElementById('typing').remove();
+                messagesContainer.innerHTML += `
+                    <div class="message bot">
+                        <div class="message-avatar bot">AI</div>
+                        <div class="message-content">
+                            <p>Based on the <strong>Data Security Policy</strong>, I can help with that. Let me provide you with the relevant information.</p>
+                            <div class="policy-reference">
+                                <div class="policy-reference-title">Data Security Policy v3.1, Section 3</div>
+                                <div style="font-size: 0.875rem; color: var(--gray-600); margin-top: 0.5rem;">Click here for full policy details</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 1500);
+        }
+
+        function sendMainChat() {
+            const input = document.getElementById('main-chat-input');
+            const message = input.value.trim();
+            if (!message) return;
+
+            const messagesContainer = document.getElementById('main-chat-messages');
+
+            messagesContainer.innerHTML += `
+                <div class="message user">
+                    <div class="message-avatar user">JS</div>
+                    <div class="message-content">${message}</div>
+                </div>
+            `;
+
+            input.value = '';
+            input.style.height = '48px';
+
+            messagesContainer.innerHTML += `
+                <div class="message bot" id="main-typing">
+                    <div class="message-avatar bot">AI</div>
+                    <div class="message-content">
+                        <div class="typing-indicator">
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            setTimeout(() => {
+                document.getElementById('main-typing').remove();
+                messagesContainer.innerHTML += `
+                    <div class="message bot">
+                        <div class="message-avatar bot">AI</div>
+                        <div class="message-content">
+                            <p>I can help you with that. Based on our policies:</p>
+                            <ul style="margin: 0.75rem 0 0.75rem 1.25rem; line-height: 1.8;">
+                                <li>Review the relevant policy sections</li>
+                                <li>Check with your manager for approval</li>
+                                <li>Ensure compliance with all requirements</li>
+                            </ul>
+                            <div class="policy-reference">
+                                <div class="policy-reference-title">Relevant Policy: Remote Work Policy v2.0</div>
+                                <div style="font-size: 0.875rem; color: var(--gray-600); margin-top: 0.5rem;">Section 5.3 covers international remote work arrangements.</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 1500);
+        }
+
+        // Chat input auto-resize
+        const chatInputs = document.querySelectorAll('.chat-input');
+        chatInputs.forEach(input => {
+            input.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = Math.min(this.scrollHeight, 200) + 'px';
+            });
+
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    if (this.id === 'quick-chat-input') {
+                        sendQuickChat();
+                    } else if (this.id === 'main-chat-input') {
+                        sendMainChat();
+                    }
+                }
+            });
+        });
+
+        // Quiz functionality
+        function selectOption(element, isCorrect) {
+            const question = element.closest('.question');
+            const options = question.querySelectorAll('.option');
+            const feedbacks = question.querySelectorAll('.feedback');
+            const nextBtn = document.getElementById('next-btn');
+
+            // Remove previous selections
+            options.forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect');
+            });
+
+            // Hide all feedback
+            feedbacks.forEach(fb => fb.style.display = 'none');
+
+            // Mark selection
+            element.classList.add('selected');
+
+            // Show feedback
+            setTimeout(() => {
+                if (isCorrect) {
+                    element.classList.add('correct');
+                    question.querySelector('.feedback.correct').style.display = 'block';
+                    nextBtn.disabled = false;
+                    selectedAnswer = true;
+                    quizAnswers[currentQuestion] = true;
+                } else {
+                    element.classList.add('incorrect');
+                    question.querySelector('.feedback.incorrect').style.display = 'block';
+                    // Allow retry
+                    setTimeout(() => {
+                        element.classList.remove('selected', 'incorrect');
+                        question.querySelector('.feedback.incorrect').style.display = 'none';
+                    }, 2000);
+                }
+            }, 300);
+        }
+
+        function updateQuizProgress() {
+            const answered = Object.values(quizAnswers).filter(a => a !== null).length;
+            const total = 5;
+            const percentage = (answered / total) * 100;
+            document.getElementById('quiz-progress').style.width = percentage + '%';
+            document.getElementById('current-question').textContent = currentQuestion;
+        }
+
+        function nextQuestion() {
+            if (!selectedAnswer) return;
+
+            document.getElementById(`question-${currentQuestion}`).style.display = 'none';
+            currentQuestion++;
+
+            if (currentQuestion <= 5) {
+                document.getElementById(`question-${currentQuestion}`).style.display = 'block';
+                document.getElementById('prev-btn').style.display = 'inline-flex';
+                document.getElementById('next-btn').disabled = true;
+                selectedAnswer = false;
+
+                if (currentQuestion === 5) {
+                    document.getElementById('next-btn').style.display = 'none';
+                    document.getElementById('complete-btn').style.display = 'inline-flex';
+                }
+            }
+
+            updateQuizProgress();
+            window.scrollTo(0, 0);
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 1) {
+                document.getElementById(`question-${currentQuestion}`).style.display = 'none';
+                currentQuestion--;
+                document.getElementById(`question-${currentQuestion}`).style.display = 'block';
+                document.getElementById('next-btn').style.display = 'inline-flex';
+                document.getElementById('complete-btn').style.display = 'none';
+
+                if (currentQuestion === 1) {
+                    document.getElementById('prev-btn').style.display = 'none';
+                }
+
+                document.getElementById('next-btn').disabled = quizAnswers[currentQuestion] === null;
+                selectedAnswer = quizAnswers[currentQuestion] !== null;
+                updateQuizProgress();
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function completeAcknowledgment() {
+            showToast('success', 'Policy Acknowledged', 'You have successfully completed the acknowledgment for Data Security Policy v3.1');
+            setTimeout(() => {
+                navigateTo('dashboard');
+            }, 2000);
+        }
+
+        // Toast notifications
+        function showToast(type, title, message) {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <div class="toast-icon">✓</div>
+                <div>
+                    <div style="font-weight: 600; margin-bottom: 0.25rem;">${title}</div>
+                    <div style="font-size: 0.875rem; color: var(--gray-600);">${message}</div>
+                </div>
+            `;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.animation = 'slideIn 0.3s reverse';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // AI Suggestion functions
+        function showAISuggestion(context) {
+            showToast('info', 'AI Insight', 'Based on your pending tasks, we recommend completing Data Security acknowledgment first.');
+        }
+
+        function getAIRecommendations() {
+            showToast('info', 'AI Recommendations', 'Analyzing your policy status and generating personalized recommendations...');
+        }
+
+        function askAIAboutPolicy() {
+            openAIChat();
+            setTimeout(() => {
+                document.getElementById('quick-chat-input').value = 'Can you summarize the key points of this policy?';
+            }, 300);
+        }
+
+        // Global search with AI
+        document.getElementById('global-search').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const query = this.value.trim();
+                if (query) {
+                    showToast('info', 'AI Search', `Searching for: "${query}"...`);
+                    setTimeout(() => {
+                        navigateTo('library');
+                    }, 1000);
+                }
+            }
+        });
+
+        // Initialize quiz progress
+        updateQuizProgress();
+    </script>
+</body>
+</html>

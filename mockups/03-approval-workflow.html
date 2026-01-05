@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolicyHub - Approval Workflow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f7fa;
+            color: #1a202c;
+        }
+
+        .header {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #2563eb;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .layout {
+            display: flex;
+            height: calc(100vh - 73px);
+        }
+
+        .sidebar {
+            width: 250px;
+            background: #ffffff;
+            border-right: 1px solid #e2e8f0;
+            padding: 1.5rem 0;
+        }
+
+        .nav-item {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-item:hover {
+            background: #f1f5f9;
+        }
+
+        .nav-item.active {
+            background: #eff6ff;
+            color: #2563eb;
+            border-left: 3px solid #2563eb;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+        }
+
+        .policy-content {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .approval-panel {
+            width: 400px;
+            background: #ffffff;
+            border-left: 1px solid #e2e8f0;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .policy-header {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .policy-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .policy-meta {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .policy-meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .policy-meta-item label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #94a3b8;
+        }
+
+        .policy-meta-item span {
+            margin-top: 0.25rem;
+            color: #1a202c;
+            font-weight: 500;
+        }
+
+        .policy-body {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 3rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            line-height: 1.7;
+        }
+
+        .policy-body h2 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .policy-body p {
+            margin-bottom: 1rem;
+        }
+
+        .workflow-timeline {
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 30px;
+            bottom: -20px;
+            width: 2px;
+            background: #e2e8f0;
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+
+        .timeline-icon.completed {
+            background: #10b981;
+            color: white;
+        }
+
+        .timeline-icon.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        .timeline-icon.pending {
+            background: #cbd5e1;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-content h4 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-content p {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        .approval-actions {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .approval-actions h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .approval-actions textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            resize: vertical;
+        }
+
+        .approval-actions textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.2s;
+            flex: 1;
+        }
+
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .btn-warning {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background: #d97706;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .info-section {
+            margin-bottom: 2rem;
+        }
+
+        .info-section h3 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #64748b;
+            text-transform: uppercase;
+        }
+
+        .info-item {
+            padding: 0.75rem;
+            background: #f8fafc;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-item label {
+            font-size: 0.75rem;
+            color: #64748b;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-item span {
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .comment {
+            padding: 1rem;
+            background: #fffbeb;
+            border-left: 3px solid #f59e0b;
+            border-radius: 6px;
+            font-size: 0.875rem;
+        }
+
+        .comment-author {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">📋 PolicyHub</div>
+        <div class="user-menu">
+            <span>Emily Davis (Legal Counsel)</span>
+            <div class="user-avatar">ED</div>
+        </div>
+    </div>
+
+    <div class="layout">
+        <div class="sidebar">
+            <div class="nav-item">
+                <span>📊</span>
+                <span>Dashboard</span>
+            </div>
+            <div class="nav-item">
+                <span>📝</span>
+                <span>My Policies</span>
+            </div>
+            <div class="nav-item">
+                <span>✍️</span>
+                <span>Authoring</span>
+            </div>
+            <div class="nav-item active">
+                <span>✅</span>
+                <span>Approvals</span>
+            </div>
+            <div class="nav-item">
+                <span>📚</span>
+                <span>Policy Library</span>
+            </div>
+            <div class="nav-item">
+                <span>🤖</span>
+                <span>Policy Assistant</span>
+            </div>
+            <div class="nav-item">
+                <span>📈</span>
+                <span>Analytics</span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="policy-content">
+                <div class="policy-header">
+                    <div style="display: flex; justify-content: space-between; align-items: start;">
+                        <div>
+                            <span class="badge badge-warning">Awaiting Your Approval</span>
+                            <h1>Remote Work Policy</h1>
+                        </div>
+                        <button style="padding: 0.5rem 1rem; border: 1px solid #e2e8f0; background: white; border-radius: 6px; cursor: pointer;">
+                            View Changes
+                        </button>
+                    </div>
+
+                    <div class="policy-meta">
+                        <div class="policy-meta-item">
+                            <label>Version</label>
+                            <span>v2.0</span>
+                        </div>
+                        <div class="policy-meta-item">
+                            <label>Author</label>
+                            <span>Sarah Johnson</span>
+                        </div>
+                        <div class="policy-meta-item">
+                            <label>Submitted</label>
+                            <span>Dec 14, 2025</span>
+                        </div>
+                        <div class="policy-meta-item">
+                            <label>Due Date</label>
+                            <span>Dec 18, 2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="policy-body">
+                    <h2>1. Purpose</h2>
+                    <p>This policy establishes guidelines for employees who wish to work remotely, either on a full-time or part-time basis. It aims to provide flexibility while maintaining productivity, collaboration, and security standards.</p>
+
+                    <h2>2. Scope</h2>
+                    <p>This policy applies to all full-time employees who have completed their probationary period and whose roles are suitable for remote work arrangements.</p>
+
+                    <h2>3. Policy Statement</h2>
+                    <p>Our company supports flexible work arrangements that benefit both employees and the organization. Remote work is a privilege granted based on job requirements, performance, and business needs.</p>
+
+                    <p>Employees approved for remote work must maintain the same level of productivity and availability as if working in the office. All company policies, including those related to confidentiality, data security, and professional conduct, continue to apply in remote work settings.</p>
+
+                    <h2>4. Eligibility</h2>
+                    <p>To be eligible for remote work arrangements:</p>
+                    <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                        <li>Employee must have completed probationary period</li>
+                        <li>Role must be suitable for remote work</li>
+                        <li>Employee must have demonstrated strong performance</li>
+                        <li>Manager approval required</li>
+                    </ul>
+
+                    <h2>5. Guidelines</h2>
+                    <p>Remote workers are expected to:</p>
+                    <ul style="margin-left: 2rem;">
+                        <li>Maintain regular working hours and be available during core business hours</li>
+                        <li>Have a dedicated workspace with reliable internet connection</li>
+                        <li>Participate in all required meetings via video conference</li>
+                        <li>Respond to communications promptly</li>
+                        <li>Protect company data and use approved security measures</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="approval-panel">
+                <h2 style="font-size: 1.25rem; margin-bottom: 1.5rem;">Approval Workflow</h2>
+
+                <div class="workflow-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-icon completed">✓</div>
+                        <div class="timeline-content">
+                            <h4>Submitted</h4>
+                            <p>Sarah Johnson • Dec 14, 9:30 AM</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon completed">✓</div>
+                        <div class="timeline-content">
+                            <h4>HR Review</h4>
+                            <p>Michael Chen approved • Dec 14, 2:15 PM</p>
+                            <div class="comment" style="margin-top: 0.5rem;">
+                                <div class="comment-author">Michael Chen</div>
+                                Approved. Guidelines align with our HR standards.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon active">→</div>
+                        <div class="timeline-content">
+                            <h4>Legal Review</h4>
+                            <p>Emily Davis (you) • Awaiting approval</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon pending">•</div>
+                        <div class="timeline-content">
+                            <h4>Executive Approval</h4>
+                            <p>David Martinez • Pending</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon pending">•</div>
+                        <div class="timeline-content">
+                            <h4>Publish</h4>
+                            <p>Automated upon final approval</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="approval-actions">
+                    <h3>Your Decision</h3>
+                    <textarea placeholder="Add comments or conditions (optional)"></textarea>
+                    <div class="action-buttons">
+                        <button class="btn btn-success">✓ Approve</button>
+                        <button class="btn btn-danger">✗ Reject</button>
+                    </div>
+                    <button class="btn btn-warning" style="margin-top: 0.5rem; width: 100%;">Request Changes</button>
+                </div>
+
+                <div class="info-section">
+                    <h3>Policy Information</h3>
+                    <div class="info-item">
+                        <label>Category</label>
+                        <span>HR Policies</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Effective Date</label>
+                        <span>January 15, 2025</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Review Frequency</label>
+                        <span>Annually</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Applies To</label>
+                        <span>All Employees</span>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h3>Attachments</h3>
+                    <div style="font-size: 0.875rem;">
+                        <div style="padding: 0.75rem; background: #f8fafc; border-radius: 6px; margin-bottom: 0.5rem; cursor: pointer;">
+                            📄 Remote_Work_Request_Form.pdf
+                        </div>
+                        <div style="padding: 0.75rem; background: #f8fafc; border-radius: 6px; cursor: pointer;">
+                            📄 Security_Requirements.pdf
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

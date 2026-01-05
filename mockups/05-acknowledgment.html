@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolicyHub - Policy Acknowledgment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #1a202c;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header h1 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 0.875rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #10b981;
+            width: 60%;
+            transition: width 0.3s;
+        }
+
+        .content {
+            padding: 2rem;
+        }
+
+        .policy-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .policy-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .policy-section {
+            margin-bottom: 2rem;
+        }
+
+        .policy-section h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1a202c;
+        }
+
+        .policy-section p {
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .policy-section ul {
+            margin-left: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .quiz-section {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .quiz-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-header h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-header p {
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .question {
+            margin-bottom: 2rem;
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .option {
+            padding: 1rem 1.25rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .option:hover {
+            border-color: #cbd5e1;
+            background: #ffffff;
+        }
+
+        .option.selected {
+            border-color: #2563eb;
+            background: #eff6ff;
+        }
+
+        .option.correct {
+            border-color: #10b981;
+            background: #d1fae5;
+        }
+
+        .option.incorrect {
+            border-color: #ef4444;
+            background: #fee2e2;
+        }
+
+        .radio {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #cbd5e1;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .option.selected .radio {
+            border-color: #2563eb;
+        }
+
+        .option.selected .radio::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #2563eb;
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+        }
+
+        .feedback.correct {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .feedback.incorrect {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .badge-info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .format-selector {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+
+        .format-option {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .format-option:hover {
+            border-color: #cbd5e1;
+        }
+
+        .format-option.active {
+            border-color: #2563eb;
+            background: #eff6ff;
+        }
+
+        .format-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .format-name {
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">📋</div>
+            <h1>Policy Acknowledgment</h1>
+            <p>Please review this policy and complete the comprehension quiz</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+
+        <div class="content">
+            <div class="policy-title">Data Security & Privacy Policy</div>
+
+            <div class="policy-meta">
+                <div>
+                    <strong>Version:</strong> v3.1
+                </div>
+                <div>
+                    <strong>Effective:</strong> Dec 1, 2024
+                </div>
+                <div>
+                    <strong>Owner:</strong> Michael Chen
+                </div>
+                <div>
+                    <span class="badge badge-info">Required</span>
+                </div>
+            </div>
+
+            <div class="format-selector">
+                <div class="format-option active">
+                    <div class="format-icon">📄</div>
+                    <div class="format-name">Read</div>
+                </div>
+                <div class="format-option">
+                    <div class="format-icon">🎥</div>
+                    <div class="format-name">Watch</div>
+                </div>
+                <div class="format-option">
+                    <div class="format-icon">🎧</div>
+                    <div class="format-name">Listen</div>
+                </div>
+                <div class="format-option">
+                    <div class="format-icon">💬</div>
+                    <div class="format-name">Chat</div>
+                </div>
+            </div>
+
+            <div class="policy-section">
+                <h2>1. Purpose</h2>
+                <p>This policy establishes the standards for protecting company and customer data, ensuring compliance with applicable privacy regulations, and maintaining the confidentiality, integrity, and availability of information assets.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>2. Scope</h2>
+                <p>This policy applies to all employees, contractors, and third parties who have access to company information systems or handle sensitive data.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>3. Key Requirements</h2>
+                <ul>
+                    <li>Use strong, unique passwords for all systems (minimum 12 characters)</li>
+                    <li>Enable multi-factor authentication (MFA) on all accounts</li>
+                    <li>Never share login credentials with anyone</li>
+                    <li>Encrypt sensitive data both at rest and in transit</li>
+                    <li>Report suspected security incidents within 1 hour</li>
+                    <li>Complete annual security awareness training</li>
+                </ul>
+            </div>
+
+            <div class="quiz-section">
+                <div class="quiz-header">
+                    <h3>Comprehension Quiz</h3>
+                    <p>Answer the following questions to demonstrate your understanding</p>
+                </div>
+
+                <div class="question">
+                    <div class="question-text">
+                        <strong>Question 1 of 3:</strong> What is the minimum password length required by this policy?
+                    </div>
+                    <div class="options">
+                        <div class="option">
+                            <div class="radio"></div>
+                            <span>8 characters</span>
+                        </div>
+                        <div class="option selected correct">
+                            <div class="radio"></div>
+                            <span>12 characters</span>
+                        </div>
+                        <div class="option">
+                            <div class="radio"></div>
+                            <span>16 characters</span>
+                        </div>
+                        <div class="option">
+                            <div class="radio"></div>
+                            <span>No minimum specified</span>
+                        </div>
+                    </div>
+                    <div class="feedback correct">
+                        ✓ Correct! The policy requires a minimum of 12 characters for all passwords.
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-text">
+                        <strong>Question 2 of 3:</strong> How quickly must you report a suspected security incident?
+                    </div>
+                    <div class="options">
+                        <div class="option">
+                            <div class="radio"></div>
+                            <span>Within 24 hours</span>
+                        </div>
+                        <div class="option">
+                            <div class="radio"></div>
+                            <span>Within 1 hour</span>
+                        </div>
+                        <div class="option">
+                            <div class="radio"></div>
+                            <span>Within 1 business day</span>
+                        </div>
+                        <div class="option">
+                            <div class="radio"></div>
+                            <span>Immediately, no time limit</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-text">
+                        <strong>Question 3 of 3:</strong> Which of the following is required for all employee accounts?
+                    </div>
+                    <div class="options">
+                        <div class="option">
+                            <div class="radio"></div>
+                            <span>Biometric authentication</span>
+                        </div>
+                        <div class="option">
+                            <div class="radio"></div>
+                            <span>Multi-factor authentication (MFA)</span>
+                        </div>
+                        <div class="option">
+                            <div class="radio"></div>
+                            <span>Hardware security keys</span>
+                        </div>
+                        <div class="option">
+                            <div class="radio"></div>
+                            <span>Smart card access</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-secondary">← Previous</button>
+                <div style="font-size: 0.875rem; color: #64748b;">
+                    Questions completed: 1 of 3
+                </div>
+                <button class="btn btn-primary">Next Question →</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

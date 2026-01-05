@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolicyHub - Analytics Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f7fa;
+            color: #1a202c;
+        }
+
+        .header {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #2563eb;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .layout {
+            display: flex;
+            height: calc(100vh - 73px);
+        }
+
+        .sidebar {
+            width: 250px;
+            background: #ffffff;
+            border-right: 1px solid #e2e8f0;
+            padding: 1.5rem 0;
+        }
+
+        .nav-item {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-item:hover {
+            background: #f1f5f9;
+        }
+
+        .nav-item.active {
+            background: #eff6ff;
+            color: #2563eb;
+            border-left: 3px solid #2563eb;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .date-range {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: #ffffff;
+            cursor: pointer;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .stat-icon.blue {
+            background: #eff6ff;
+        }
+
+        .stat-icon.green {
+            background: #d1fae5;
+        }
+
+        .stat-icon.yellow {
+            background: #fef3c7;
+        }
+
+        .stat-icon.red {
+            background: #fee2e2;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-change {
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .stat-change.positive {
+            color: #10b981;
+        }
+
+        .stat-change.negative {
+            color: #ef4444;
+        }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-card {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .chart-filter {
+            padding: 0.5rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            background: #ffffff;
+            font-size: 0.875rem;
+            cursor: pointer;
+        }
+
+        .chart-placeholder {
+            height: 300px;
+            background: linear-gradient(180deg, #eff6ff 0%, #f8fafc 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-style: italic;
+        }
+
+        .policy-list {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .policy-list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .policy-list-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .view-all {
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+
+        .policy-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e2e8f0;
+            align-items: center;
+        }
+
+        .policy-row:last-child {
+            border-bottom: none;
+        }
+
+        .policy-row-header {
+            font-weight: 600;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        .policy-name {
+            font-weight: 500;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: #f1f5f9;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: #10b981;
+            border-radius: 4px;
+            transition: width 0.3s;
+        }
+
+        .progress-bar-fill.warning {
+            background: #f59e0b;
+        }
+
+        .progress-bar-fill.danger {
+            background: #ef4444;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge-warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge-danger {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .donut-chart {
+            width: 200px;
+            height: 200px;
+            margin: 1rem auto;
+            position: relative;
+        }
+
+        .donut-segment {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 50% 100%);
+        }
+
+        .donut-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .donut-value {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .donut-label {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        .legend {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .legend-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .legend-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+        }
+
+        .legend-value {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">📋 PolicyHub</div>
+        <div class="user-menu">
+            <span>Admin Dashboard</span>
+            <div class="user-avatar">AD</div>
+        </div>
+    </div>
+
+    <div class="layout">
+        <div class="sidebar">
+            <div class="nav-item">
+                <span>📊</span>
+                <span>Dashboard</span>
+            </div>
+            <div class="nav-item">
+                <span>📝</span>
+                <span>My Policies</span>
+            </div>
+            <div class="nav-item">
+                <span>✍️</span>
+                <span>Authoring</span>
+            </div>
+            <div class="nav-item">
+                <span>✅</span>
+                <span>Approvals</span>
+            </div>
+            <div class="nav-item">
+                <span>📚</span>
+                <span>Policy Library</span>
+            </div>
+            <div class="nav-item">
+                <span>🤖</span>
+                <span>Policy Assistant</span>
+            </div>
+            <div class="nav-item active">
+                <span>📈</span>
+                <span>Analytics</span>
+            </div>
+            <div class="nav-item">
+                <span>⚙️</span>
+                <span>Settings</span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="page-header">
+                <h1 class="page-title">Analytics & Insights</h1>
+                <div class="date-range">
+                    <span>📅</span>
+                    <span>Last 30 Days</span>
+                    <span>▼</span>
+                </div>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-label">Overall Acknowledgment Rate</div>
+                        <div class="stat-icon green">✓</div>
+                    </div>
+                    <div class="stat-value">94.2%</div>
+                    <div class="stat-change positive">
+                        ↑ 2.8% from last month
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-label">Active Policies</div>
+                        <div class="stat-icon blue">📄</div>
+                    </div>
+                    <div class="stat-value">127</div>
+                    <div class="stat-change positive">
+                        ↑ 3 new this month
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-label">Avg. Comprehension Score</div>
+                        <div class="stat-icon green">🎯</div>
+                    </div>
+                    <div class="stat-value">88.5%</div>
+                    <div class="stat-change positive">
+                        ↑ 1.2% from last month
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-label">Policies Overdue Review</div>
+                        <div class="stat-icon red">⚠️</div>
+                    </div>
+                    <div class="stat-value">5</div>
+                    <div class="stat-change negative">
+                        ↓ 2 from last month
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <div class="chart-title">Acknowledgment Trend</div>
+                        <select class="chart-filter">
+                            <option>Last 30 Days</option>
+                            <option>Last 90 Days</option>
+                            <option>Last Year</option>
+                        </select>
+                    </div>
+                    <div class="chart-placeholder">
+                        Line chart showing acknowledgment rate over time<br>
+                        (Trend: 88% → 91% → 94%)
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <div class="chart-title">Policies by Category</div>
+                    </div>
+                    <div class="chart-placeholder" style="height: 200px;">
+                        Donut chart placeholder
+                    </div>
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-label">
+                                <div class="legend-color" style="background: #2563eb;"></div>
+                                <span>HR Policies</span>
+                            </div>
+                            <div class="legend-value">32</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-label">
+                                <div class="legend-color" style="background: #10b981;"></div>
+                                <span>IT & Security</span>
+                            </div>
+                            <div class="legend-value">28</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-label">
+                                <div class="legend-color" style="background: #f59e0b;"></div>
+                                <span>Legal</span>
+                            </div>
+                            <div class="legend-value">18</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-label">
+                                <div class="legend-color" style="background: #8b5cf6;"></div>
+                                <span>Finance</span>
+                            </div>
+                            <div class="legend-value">15</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Policy Performance -->
+            <div class="policy-list">
+                <div class="policy-list-header">
+                    <div class="policy-list-title">Policy Performance</div>
+                    <a href="#" class="view-all">View all →</a>
+                </div>
+
+                <div class="policy-row policy-row-header">
+                    <div>Policy Name</div>
+                    <div>Acknowledgment</div>
+                    <div>Comprehension</div>
+                    <div>Status</div>
+                </div>
+
+                <div class="policy-row">
+                    <div class="policy-name">Remote Work Policy</div>
+                    <div>
+                        <div style="font-size: 0.875rem; margin-bottom: 0.25rem;">97%</div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: 97%;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.875rem;">92%</div>
+                    </div>
+                    <div>
+                        <span class="badge badge-success">Excellent</span>
+                    </div>
+                </div>
+
+                <div class="policy-row">
+                    <div class="policy-name">Data Security Policy</div>
+                    <div>
+                        <div style="font-size: 0.875rem; margin-bottom: 0.25rem;">82%</div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill warning" style="width: 82%;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.875rem;">85%</div>
+                    </div>
+                    <div>
+                        <span class="badge badge-warning">Needs Attention</span>
+                    </div>
+                </div>
+
+                <div class="policy-row">
+                    <div class="policy-name">Expense Policy</div>
+                    <div>
+                        <div style="font-size: 0.875rem; margin-bottom: 0.25rem;">95%</div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.875rem;">90%</div>
+                    </div>
+                    <div>
+                        <span class="badge badge-success">Excellent</span>
+                    </div>
+                </div>
+
+                <div class="policy-row">
+                    <div class="policy-name">Social Media Policy</div>
+                    <div>
+                        <div style="font-size: 0.875rem; margin-bottom: 0.25rem;">68%</div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill danger" style="width: 68%;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.875rem;">75%</div>
+                    </div>
+                    <div>
+                        <span class="badge badge-danger">Action Required</span>
+                    </div>
+                </div>
+
+                <div class="policy-row">
+                    <div class="policy-name">Code of Conduct</div>
+                    <div>
+                        <div style="font-size: 0.875rem; margin-bottom: 0.25rem;">98%</div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: 98%;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.875rem;">94%</div>
+                    </div>
+                    <div>
+                        <span class="badge badge-success">Excellent</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
