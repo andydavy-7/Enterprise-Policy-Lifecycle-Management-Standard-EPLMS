@@ -10,8 +10,8 @@
 
 ## Summary Statistics
 
-- **Total Operations:** 393
-- **Total Features:** 40 (F1.1 through F7.4)
+- **Total Operations:** 414
+- **Total Features:** 41 (F1.1 through F7.4)
 - **Total Modules:** 7
 
 ---
@@ -22,7 +22,7 @@
 |----------|-------------|------------|----------|
 | 1 | Policy Authoring & Collaboration | 44 | 5 (F1.1-F1.5) |
 | 2 | Approval Workflow Management | 34 | 4 (F2.1-F2.4) |
-| 3 | Policy Distribution & Publishing | 54 | 5 (F3.1-F3.5) |
+| 3 | Policy Distribution & Publishing | 75 | 6 (F3.1-F3.6) |
 | 4 | Policy Adoption & Engagement | 66 | 7 (F4.1-F4.7) |
 | 5 | Compliance Co-Pilot | 67 | 7 (F5.1-F5.7) |
 | 6 | Analytics & Review Management | 88 | 8 (F6.1-F6.8) |
@@ -66,13 +66,14 @@ Module Number, Module Name, Feature Number, Feature Name, Operation Code, Operat
 - **F2.3 Digital Signatures & Approval Certificates** - 7 operations
 - **F2.4 Workflow Analytics & Bottleneck Detection** - 7 operations
 
-### Module 3: Policy Distribution & Publishing (54 operations)
+### Module 3: Policy Distribution & Publishing (75 operations)
 
 - **F3.1 Multi-Channel Distribution** - 8 operations
 - **F3.2 Policy Repository & Portal** - 12 operations
 - **F3.3 Publishing Controls & Versioning** - 11 operations
 - **F3.4 Archive & Retention Management** - 12 operations
 - **F3.5 Distribution Analytics & Tracking** - 11 operations
+- **F3.6 Policy Memos (Temporary Amendments)** - 21 operations
 
 ### Module 4: Policy Adoption & Engagement (66 operations)
 
@@ -136,6 +137,11 @@ Module Number, Module Name, Feature Number, Feature Name, Operation Code, Operat
 - `BROWSE_POLICIES` - Browse all published policies
 - `ARCHIVE_POLICY` - Move policy to archived status
 - `TRACK_DELIVERY_RATE` - Monitor notification delivery success
+- `CREATE_MEMO` - Create temporary policy amendment
+- `DEFINE_TEMPORAL_SCOPE` - Set start and end dates for memo
+- `APPROVE_MEMO` - Approve temporary amendment with digital signature
+- `EXTEND_MEMO` - Extend memo duration (requires re-approval)
+- `MAKE_PERMANENT` - Convert memo to permanent policy change
 
 ### Adoption (Module 4)
 - `ACKNOWLEDGE_POLICY` - Employee acknowledges policy
@@ -191,9 +197,9 @@ This inventory serves as:
 ```
 
 **Validation:**
-- All 40 features successfully extracted
+- All 41 features successfully extracted
 - All 7 modules represented
-- 393 unique operations identified
+- 414 unique operations identified
 - No duplicate operation codes within features
 
 ---
@@ -206,4 +212,6 @@ This inventory serves as:
 
 ---
 
-**Last Updated:** December 2024
+**Last Updated:** January 2026
+
+**Latest Addition:** F3.6 Policy Memos (Temporary Amendments) - 21 operations added to support time-bound policy amendments without full revision workflows.

@@ -131,6 +131,27 @@ Module Number,Module Name,Feature Number,Feature Name,Operation Code,Operation D
 3,Policy Distribution & Publishing,F3.5,Distribution Analytics & Tracking,EXPORT_DISTRIBUTION_REPORT,Generate distribution audit report
 3,Policy Distribution & Publishing,F3.5,Distribution Analytics & Tracking,RETRY_FAILED_DELIVERY,Resend failed notifications
 3,Policy Distribution & Publishing,F3.5,Distribution Analytics & Tracking,VIEW_GEOGRAPHIC_REACH,See distribution by location/timezone
+3,Policy Distribution & Publishing,F3.6,Policy Memos (Temporary Amendments),CREATE_MEMO,Create new temporary policy amendment
+3,Policy Distribution & Publishing,F3.6,Policy Memos (Temporary Amendments),SELECT_BASE_POLICY,Choose which policy to amend
+3,Policy Distribution & Publishing,F3.6,Policy Memos (Temporary Amendments),DEFINE_TEMPORAL_SCOPE,Set start and end dates for memo
+3,Policy Distribution & Publishing,F3.6,Policy Memos (Temporary Amendments),TARGET_DEPARTMENTS,Specify which departments/roles memo applies to
+3,Policy Distribution & Publishing,F3.6,Policy Memos (Temporary Amendments),DEFINE_AMENDMENT,Set original rule vs temporary rule comparison
+3,Policy Distribution & Publishing,F3.6,Policy Memos (Temporary Amendments),CONFIGURE_AUTO_EXPIRE,Enable/disable automatic expiry on end date
+3,Policy Distribution & Publishing,F3.6,Policy Memos (Temporary Amendments),SELECT_APPROVER,Choose single approver for lightweight approval
+3,Policy Distribution & Publishing,F3.6,Policy Memos (Temporary Amendments),SUBMIT_MEMO,Submit memo for approval
+3,Policy Distribution & Publishing,F3.6,Policy Memos (Temporary Amendments),APPROVE_MEMO,Approve temporary amendment with digital signature
+3,Policy Distribution & Publishing,F3.6,Policy Memos (Temporary Amendments),REJECT_MEMO,Reject memo with reason
+3,Policy Distribution & Publishing,F3.6,Policy Memos (Temporary Amendments),EXTEND_MEMO,Extend memo duration (requires re-approval)
+3,Policy Distribution & Publishing,F3.6,Policy Memos (Temporary Amendments),MAKE_PERMANENT,Convert memo to permanent policy change
+3,Policy Distribution & Publishing,F3.6,Policy Memos (Temporary Amendments),END_MEMO_EARLY,Manually expire memo before end date
+3,Policy Distribution & Publishing,F3.6,Policy Memos (Temporary Amendments),VIEW_ACTIVE_MEMOS,See all currently active memos
+3,Policy Distribution & Publishing,F3.6,Policy Memos (Temporary Amendments),FILTER_MEMOS,Filter by status (active/expiring/expired)
+3,Policy Distribution & Publishing,F3.6,Policy Memos (Temporary Amendments),VIEW_MEMO_DETAILS,See full memo information and amendment details
+3,Policy Distribution & Publishing,F3.6,Policy Memos (Temporary Amendments),VIEW_EXPIRY_COUNTDOWN,See days/hours remaining until expiry
+3,Policy Distribution & Publishing,F3.6,Policy Memos (Temporary Amendments),VIEW_EXPIRED_MEMOS,Browse historical expired memos
+3,Policy Distribution & Publishing,F3.6,Policy Memos (Temporary Amendments),RECEIVE_EXPIRY_WARNING,Get notification before memo expires
+3,Policy Distribution & Publishing,F3.6,Policy Memos (Temporary Amendments),VIEW_MEMO_ANALYTICS,See memo usage statistics and patterns
+3,Policy Distribution & Publishing,F3.6,Policy Memos (Temporary Amendments),IDENTIFY_RECURRING_MEMOS,Find memos that repeat seasonally
 4,Policy Adoption & Engagement,F4.1,Policy Acknowledgment Interface (Employee View),VIEW_PENDING_POLICIES,See policies requiring acknowledgment
 4,Policy Adoption & Engagement,F4.1,Policy Acknowledgment Interface (Employee View),READ_POLICY,Read policy content
 4,Policy Adoption & Engagement,F4.1,Policy Acknowledgment Interface (Employee View),CHOOSE_FORMAT,Select delivery format
