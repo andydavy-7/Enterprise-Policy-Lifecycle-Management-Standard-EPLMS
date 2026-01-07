@@ -10,8 +10,8 @@
 
 ## Summary Statistics
 
-- **Total Operations:** 414
-- **Total Features:** 41 (F1.1 through F7.4)
+- **Total Operations:** 426
+- **Total Features:** 42 (F1.1 through F7.4)
 - **Total Modules:** 7
 
 ---
@@ -20,7 +20,7 @@
 
 | Module # | Module Name | Operations | Features |
 |----------|-------------|------------|----------|
-| 1 | Policy Authoring & Collaboration | 44 | 5 (F1.1-F1.5) |
+| 1 | Policy Authoring & Collaboration | 56 | 6 (F1.1-F1.6) |
 | 2 | Approval Workflow Management | 34 | 4 (F2.1-F2.4) |
 | 3 | Policy Distribution & Publishing | 75 | 6 (F3.1-F3.6) |
 | 4 | Policy Adoption & Engagement | 66 | 7 (F4.1-F4.7) |
@@ -51,13 +51,14 @@ Module Number, Module Name, Feature Number, Feature Name, Operation Code, Operat
 
 ## Operations by Feature
 
-### Module 1: Policy Authoring & Collaboration (44 operations)
+### Module 1: Policy Authoring & Collaboration (56 operations)
 
 - **F1.1 Policy Editor** - 10 operations
 - **F1.2 Version Control System** - 8 operations
 - **F1.3 Real-Time Collaboration** - 10 operations
 - **F1.4 AI-Powered Authoring Assistant** - 8 operations
 - **F1.5 Template Library & Content Snippets** - 8 operations
+- **F1.6 Document Import & Policy Extraction** - 12 operations
 
 ### Module 2: Approval Workflow Management (34 operations)
 
@@ -123,6 +124,11 @@ Module Number, Module Name, Feature Number, Feature Name, Operation Code, Operat
 - `AUTO_SAVE` - Automatically save changes
 - `COMPARE_VERSIONS` - View differences between two versions
 - `ADD_COMMENT` - Add inline comment
+- `UPLOAD_DOCUMENT` - Upload existing policy file (PDF/Word/Doc)
+- `EXTRACT_TEXT` - Extract text from document (OCR if needed)
+- `PARSE_STRUCTURE` - Identify sections and hierarchy
+- `GENERATE_POLICY_CODE` - Convert to structured format (Policy as Code)
+- `IMPORT_AS_POLICY` - Create policy from extraction
 
 ### Workflow Management (Module 2)
 - `CREATE_WORKFLOW` - Create new approval workflow
@@ -197,9 +203,9 @@ This inventory serves as:
 ```
 
 **Validation:**
-- All 41 features successfully extracted
+- All 42 features successfully extracted
 - All 7 modules represented
-- 414 unique operations identified
+- 426 unique operations identified
 - No duplicate operation codes within features
 
 ---
@@ -214,4 +220,6 @@ This inventory serves as:
 
 **Last Updated:** January 2026
 
-**Latest Addition:** F3.6 Policy Memos (Temporary Amendments) - 21 operations added to support time-bound policy amendments without full revision workflows.
+**Latest Additions:**
+- **F1.6 Document Import & Policy Extraction** - 12 operations added to support importing existing policies from PDF/Word/Docs and converting them to structured "Policy as Code" format through AI-powered extraction.
+- **F3.6 Policy Memos (Temporary Amendments)** - 21 operations added to support time-bound policy amendments without full revision workflows.

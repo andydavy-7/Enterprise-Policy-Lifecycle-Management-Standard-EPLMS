@@ -43,6 +43,18 @@ Module Number,Module Name,Feature Number,Feature Name,Operation Code,Operation D
 1,Policy Authoring & Collaboration,F1.5,Template Library & Content Snippets,CREATE_SNIPPET,Create reusable content block
 1,Policy Authoring & Collaboration,F1.5,Template Library & Content Snippets,MANAGE_SNIPPETS,Organize snippet library
 1,Policy Authoring & Collaboration,F1.5,Template Library & Content Snippets,CREATE_POLICY_FAMILY,Create related policy bundle
+1,Policy Authoring & Collaboration,F1.6,Document Import & Policy Extraction,UPLOAD_DOCUMENT,Upload existing policy file (PDF/Word/Doc)
+1,Policy Authoring & Collaboration,F1.6,Document Import & Policy Extraction,PREVIEW_UPLOAD,Preview uploaded document
+1,Policy Authoring & Collaboration,F1.6,Document Import & Policy Extraction,EXTRACT_TEXT,Extract text from document (OCR if needed)
+1,Policy Authoring & Collaboration,F1.6,Document Import & Policy Extraction,PARSE_STRUCTURE,Identify sections and hierarchy
+1,Policy Authoring & Collaboration,F1.6,Document Import & Policy Extraction,GENERATE_POLICY_CODE,Convert to structured format (Policy as Code)
+1,Policy Authoring & Collaboration,F1.6,Document Import & Policy Extraction,REVIEW_EXTRACTION,Review AI-extracted content
+1,Policy Authoring & Collaboration,F1.6,Document Import & Policy Extraction,EDIT_EXTRACTED_CONTENT,Modify extracted content
+1,Policy Authoring & Collaboration,F1.6,Document Import & Policy Extraction,MAP_METADATA,Extract policy metadata (owner/dates/tags)
+1,Policy Authoring & Collaboration,F1.6,Document Import & Policy Extraction,DETECT_VERSION,Check if policy already exists
+1,Policy Authoring & Collaboration,F1.6,Document Import & Policy Extraction,APPROVE_EXTRACTION,Approve extracted policy
+1,Policy Authoring & Collaboration,F1.6,Document Import & Policy Extraction,IMPORT_AS_POLICY,Create policy from extraction
+1,Policy Authoring & Collaboration,F1.6,Document Import & Policy Extraction,BATCH_UPLOAD,Upload multiple policies at once
 2,Approval Workflow Management,F2.1,Workflow Designer,CREATE_WORKFLOW,Create new approval workflow
 2,Approval Workflow Management,F2.1,Workflow Designer,ADD_STEP,Add approval step to workflow
 2,Approval Workflow Management,F2.1,Workflow Designer,CONFIGURE_APPROVER,Set who approves at this step
